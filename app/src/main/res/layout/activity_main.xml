@@ -6,7 +6,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nyc.c4q.jordansmith.nycevents.MainActivity">
+    tools:context="nyc.c4q.jordansmith.nycevents.MainActivity"
+    >
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
