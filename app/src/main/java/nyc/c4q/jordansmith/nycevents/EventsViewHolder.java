@@ -28,7 +28,7 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(Items eventItems) {
-        date_TV.setText(eventItems.getStartDate());
+        date_TV.setText(eventItems.getDatePart() + " (" + eventItems.getTimePart() + ")");
         nameTV.setText(eventItems.getName());
         descriptionTV.setText(eventItems.getShortDesc());
         imageURL = eventItems.getImageUrl();

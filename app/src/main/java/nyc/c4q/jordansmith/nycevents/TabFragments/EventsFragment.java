@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.c4q.jordansmith.nycevents.BuildConfig;
 import nyc.c4q.jordansmith.nycevents.EventService;
 import nyc.c4q.jordansmith.nycevents.EventsAdapter;
 import nyc.c4q.jordansmith.nycevents.Models.EventsResponse;
@@ -28,6 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class EventsFragment extends Fragment {
+    private String myApiKey = BuildConfig.API_KEY;
+    private String myAppId = BuildConfig.APP_ID;
     private RecyclerView recyclerView;
     private EventsAdapter adapter;
     List<Items> eventsList = new ArrayList<>();
@@ -55,7 +58,7 @@ public class EventsFragment extends Fragment {
                 .build();
 
         EventService service = retrofit.create(EventService.class);
-        Call<EventsResponse> call = service.getEvents("4ab80f31", "070272f54de4cefedd0559455024680e");
+        Call<EventsResponse> call = service.getEvents(myAppId, myApiKey);
         call.enqueue(new Callback<EventsResponse>() {
             @Override
             public void onResponse(Call<EventsResponse> call, Response<EventsResponse> response) {
