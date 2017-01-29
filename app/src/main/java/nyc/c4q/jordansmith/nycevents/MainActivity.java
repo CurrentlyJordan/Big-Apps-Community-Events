@@ -8,10 +8,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import nyc.c4q.jordansmith.nycevents.TabFragments.EventsFragment;
 import nyc.c4q.jordansmith.nycevents.TabFragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
+    List<Fragment> fragmentList = new ArrayList<>();
 
 
 
@@ -19,8 +23,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        populateFragmentList();
+
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
-        vPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        vPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vPager);
     }
@@ -28,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 2;
         private String tabTitles[] = new String[] { "Home", "Events"};
+        List<Fragment> fragmentList;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        public MyPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragmentList) {
             super(fragmentManager);
+            this.fragmentList = fragmentList;
         }
 
         // Returns total number of pages
@@ -42,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
         // Returns the fragment to display for that page
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return new HomeFragment();
-                case 1:
-                    return new EventsFragment();
-                default:
-                    return null;
-            }
+//            switch (position) {
+//                case 0:
+//                    return new HomeFragment();
+//                case 1:
+//                    return new EventsFragment();
+//                default:
+//                    return null;
+//            }
+            return fragmentList.get(position);
         }
 
         // Returns the page title for the top indicator
@@ -58,5 +67,10 @@ public class MainActivity extends AppCompatActivity {
             return tabTitles[position];
         }
 
+    }
+
+    public void populateFragmentList(){
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new EventsFragment());
     }
 }
