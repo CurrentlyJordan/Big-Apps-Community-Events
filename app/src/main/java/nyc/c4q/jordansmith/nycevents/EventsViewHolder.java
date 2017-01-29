@@ -35,7 +35,7 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
         if(imageURL == null) {
             eventImage.setVisibility(View.GONE);
         }else {
-            imageURL = setImageURL(eventItems.getImageUrl());
+            imageURL = setImageURL(imageURL);
             setImage(imageURL);
         }
     }
