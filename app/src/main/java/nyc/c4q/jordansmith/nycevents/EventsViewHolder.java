@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import nyc.c4q.jordansmith.nycevents.Models.Items;
+import nyc.c4q.jordansmith.nycevents.models.Items;
 
 /**
  * Created by helenchan on 1/29/17.

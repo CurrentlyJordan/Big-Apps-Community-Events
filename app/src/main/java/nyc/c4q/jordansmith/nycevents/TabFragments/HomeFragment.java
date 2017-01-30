@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.TabFragments;
+package nyc.c4q.jordansmith.nycevents.tabfragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.Models.Items;
+import nyc.c4q.jordansmith.nycevents.models.Items;
 
 /**
  * Created by helenchan on 1/29/17.
@@ -17,6 +17,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsViewHolder> {
     List<Items> eventsList = new ArrayList<>();
 
     public EventsAdapter(List<Items> eventsList) {
+
         this.eventsList = eventsList;
     }
 

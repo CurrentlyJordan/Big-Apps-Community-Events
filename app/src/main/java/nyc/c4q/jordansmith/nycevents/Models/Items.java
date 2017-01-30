@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.Models;
+package nyc.c4q.jordansmith.nycevents.models;
 
 /**
  * Created by helenchan on 1/29/17.

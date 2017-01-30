@@ -11,8 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.TabFragments.EventsFragment;
-import nyc.c4q.jordansmith.nycevents.TabFragments.HomeFragment;
+import nyc.c4q.jordansmith.nycevents.tabfragments.EventsFragment;
+import nyc.c4q.jordansmith.nycevents.tabfragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
