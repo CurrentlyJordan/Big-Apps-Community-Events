@@ -8,16 +8,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.ToLongBiFunction;
 
 import nyc.c4q.jordansmith.nycevents.TabFragments.EventsFragment;
 import nyc.c4q.jordansmith.nycevents.TabFragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
+    ImageView imageView;
 
 
 
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateFragmentList();
-
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
