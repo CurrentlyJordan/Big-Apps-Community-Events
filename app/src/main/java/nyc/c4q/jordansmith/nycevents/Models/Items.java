@@ -1,9 +1,11 @@
 package nyc.c4q.jordansmith.nycevents.models;
 
+import java.io.Serializable;
+
 /**
  * Created by helenchan on 1/29/17.
  */
-public class Items {
+public class Items implements Serializable{
     private String startDate;
     private String datePart;
     private String timePart;

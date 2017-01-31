@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ import nyc.c4q.jordansmith.nycevents.tabfragments.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
+    ImageView imageView;
 
 
 
@@ -24,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateFragmentList();
-
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         vPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vPager);
