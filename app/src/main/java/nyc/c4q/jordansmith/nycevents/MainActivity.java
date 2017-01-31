@@ -1,5 +1,6 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import nyc.c4q.jordansmith.nycevents.TabFragments.HomeFragment;
 public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
 
+    EventsDatabaseHelper dbHelper;
+    SQLiteDatabase db;
+
 
 
     @Override
@@ -24,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateFragmentList();
+
+        dbHelper = EventsDatabaseHelper.getInstance(this);
+        db = dbHelper.getWritableDatabase();
 
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
         vPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));

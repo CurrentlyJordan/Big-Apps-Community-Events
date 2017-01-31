@@ -4,6 +4,9 @@ package nyc.c4q.jordansmith.nycevents.Models;
  * Created by helenchan on 1/29/17.
  */
 public class Items {
+
+    private Long _id;
+
     private String startDate;
     private String datePart;
     private String timePart;
