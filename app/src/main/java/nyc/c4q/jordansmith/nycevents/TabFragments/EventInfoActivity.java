@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.TabFragments;
+package nyc.c4q.jordansmith.nycevents.tabfragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
-import nyc.c4q.jordansmith.nycevents.Models.Items;
+import nyc.c4q.jordansmith.nycevents.models.Items;
 import nyc.c4q.jordansmith.nycevents.R;
 
 /**

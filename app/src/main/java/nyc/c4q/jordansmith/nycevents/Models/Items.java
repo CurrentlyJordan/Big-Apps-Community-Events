@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.Models;
+package nyc.c4q.jordansmith.nycevents.models;
 
 import java.io.Serializable;
 
