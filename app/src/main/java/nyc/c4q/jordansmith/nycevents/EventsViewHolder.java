@@ -66,7 +66,7 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setImage(String imageURL){
-        Glide.with(itemView.getContext()).load(imageURL).into(eventImage);
+        Glide.with(itemView.getContext()).load(imageURL).centerCrop().into(eventImage);
 
     }
 
