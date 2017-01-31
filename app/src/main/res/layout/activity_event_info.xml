@@ -80,18 +80,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15sp" />
-            <Button
-                android:id="@+id/open_in_maps_button"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif-smallcaps"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:text="Open in Maps"
-                android:layout_width="150dp"
-                android:layout_height="60dp"
-                android:background="@drawable/button_shape"
-                />
+
+            <LinearLayout
+                android:id="@+id/map_holder"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" />
+            </LinearLayout>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
