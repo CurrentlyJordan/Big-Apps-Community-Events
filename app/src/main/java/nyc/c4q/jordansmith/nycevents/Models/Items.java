@@ -5,7 +5,9 @@ import java.util.List;
 
 /**
  * Created by helenchan on 1/29/17.
+ *
  */
+
 public class Items implements Serializable{
     private String startDate;
     private String datePart;
@@ -17,9 +19,13 @@ public class Items implements Serializable{
     private String shortDesc;
     private String website;
     private String imageUrl;
+<<<<<<< HEAD
+    private List<String> boroughs;
+=======
     private List<Geometry> geometry;
 
 
+>>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
 
 
     public String getStartDate() {
@@ -62,7 +68,14 @@ public class Items implements Serializable{
         return imageUrl;
     }
 
+<<<<<<< HEAD
+    public List<String> getBoroughs() {
+        return boroughs;
+    }
+
+=======
     public List<Geometry> getGeometry() {
         return geometry;
     }
+>>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
 }
