@@ -45,6 +45,7 @@ public class EventInfoActivity extends AppCompatActivity {
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         if(eventItem.getImageUrl() == null){
             eventPictureImageView.setVisibility(View.GONE);
+            scrollingImageView.setImageResource(R.drawable.default_event_image);
         }
         else{
             setEventImageURL(eventItem.getImageUrl());
