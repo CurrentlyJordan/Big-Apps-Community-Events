@@ -1,6 +1,7 @@
 package nyc.c4q.jordansmith.nycevents.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by helenchan on 1/29/17.
@@ -16,6 +17,10 @@ public class Items implements Serializable{
     private String shortDesc;
     private String website;
     private String imageUrl;
+    private List<Geometry> geometry;
+
+
+
 
     public String getStartDate() {
         return startDate;
@@ -55,5 +60,9 @@ public class Items implements Serializable{
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public List<Geometry> getGeometry() {
+        return geometry;
     }
 }

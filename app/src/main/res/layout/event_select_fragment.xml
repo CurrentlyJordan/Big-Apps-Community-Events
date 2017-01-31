@@ -10,7 +10,9 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/grey"></View>
+        android:background="@color/grey">
+
+    </View>
 
     <LinearLayout
         android:id="@+id/event_button_nyc"

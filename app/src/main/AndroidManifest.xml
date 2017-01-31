@@ -18,6 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".tabfragments.EventInfoActivity"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU"/>
     </application>
 
 </manifest>
