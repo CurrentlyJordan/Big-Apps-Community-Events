@@ -40,5 +40,4 @@ dependencies {
     compile 'konifar:fab-transformation:1.0.0'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
-
 }
