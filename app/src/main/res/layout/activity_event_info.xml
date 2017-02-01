@@ -165,5 +165,6 @@
             </android.support.v7.widget.Toolbar>
 
         </io.codetail.widget.RevealFrameLayout>
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

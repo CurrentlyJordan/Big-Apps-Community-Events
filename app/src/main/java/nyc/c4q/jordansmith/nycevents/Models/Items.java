@@ -20,12 +20,8 @@ public class Items implements Serializable{
     private String website;
     private String imageUrl;
     private List<String> boroughs;
-<<<<<<< HEAD
     private List<Geometry> geometry;
 
-
-=======
->>>>>>> 21479da14ca1f4c63efd9c5ef739faa81beac2de
 
 
     public String getStartDate() {
@@ -72,10 +68,7 @@ public class Items implements Serializable{
         return boroughs;
     }
 
-<<<<<<< HEAD
     public List<Geometry> getGeometry() {
         return geometry;
     }
-=======
->>>>>>> 21479da14ca1f4c63efd9c5ef739faa81beac2de
 }
