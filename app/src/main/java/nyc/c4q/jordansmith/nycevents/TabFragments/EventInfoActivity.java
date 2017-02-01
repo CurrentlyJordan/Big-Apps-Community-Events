@@ -1,7 +1,9 @@
 package nyc.c4q.jordansmith.nycevents.tabfragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -17,6 +19,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.konifar.fab_transformation.FabTransformation;
 
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
@@ -24,15 +27,16 @@ import nyc.c4q.jordansmith.nycevents.models.Items;
 
 import static nyc.c4q.jordansmith.nycevents.R.id.map;
 
-/**
- * Created by jordansmith on 1/29/17.
- */
 
-public class EventInfoActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class EventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+
     TextView eventNameTextView;
     TextView eventInfoTextView;
     TextView eventTimeTextVIew;
     ImageView scrollingImageView;
+    FloatingActionButton eventFAB;
+    Toolbar fabToolbar;
+    String eventUrl;
     LinearLayout mapHolderLinearLayout;
     Toolbar toolbar;
     GoogleMap mMap;
@@ -45,12 +49,40 @@ public class EventInfoActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_info);
-        initViews();
+        initialize();
+        initializeButtons();
         SetEventInfo();
 //        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(map);
+//        .findFragmentById(map);
 //        mapFragment.getMapAsync(this);
     }
+
+    private void initialize() {
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+        fabToolbar = (Toolbar) findViewById(R.id.fab_toolbar);
+        eventFAB = (FloatingActionButton) findViewById(R.id.fab_event_info_button);
+        eventFAB.setOnClickListener(this);
+        eventNameTextView = (TextView) findViewById(R.id.event_name_textview);
+        eventInfoTextView = (TextView) findViewById(R.id.event_desc_textview);
+        eventTimeTextVIew = (TextView) findViewById(R.id.event_time_textview);
+        scrollingImageView = (ImageView) findViewById(R.id.main_backdrop);
+        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.map_holder);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(map);
+        mapFragment.getMapAsync(this);
+    }
+
+    private void initializeButtons() {
+        ImageView closeButton = (ImageView) findViewById(R.id.close_toolbar);
+        closeButton.setOnClickListener(this);
+        ImageView chromeButton = (ImageView) findViewById(R.id.chrome_button_toolbar);
+        chromeButton.setOnClickListener(this);
+        ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
+        shareButton.setOnClickListener(this);
+        SetEventInfo();
+    }
+
 
     private void SetEventInfo() {
         Intent intent = getIntent();
@@ -59,26 +91,31 @@ public class EventInfoActivity extends AppCompatActivity implements OnMapReadyCa
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
         eventTitle = eventItem.getName();
-        if(eventItem.getImageUrl() == null){
+        if (eventItem.getImageUrl() == null) {
             scrollingImageView.setImageResource(R.drawable.default_event_image);
-        }
-        else{
+        } else {
             setEventImageURL(eventItem.getImageUrl());
         }
-        if(eventItem.getGeometry() != null){
+        if (eventItem.getGeometry() != null) {
             double eventLat = convertCoordinates(eventItem.getGeometry().get(0).getLat());
             double eventLong = convertCoordinates(eventItem.getGeometry().get(0).getLng());
-            eventLocation = new LatLng(eventLat,eventLong);
-        }
-        else{
+            eventLocation = new LatLng(eventLat, eventLong);
+        } else {
             mapHolderLinearLayout.setVisibility(View.GONE);
+        }
+        eventUrl = eventItem.getWebsite();
+        if (eventUrl == null) {
+            eventUrl = eventItem.getPermalink();
         }
 
     }
 
-    public void setEventImageURL(String imageURL){
+    public void setEventImageURL(String imageURL) {
         String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
-        Glide.with(getApplicationContext()).load(fullEventImageUrl).centerCrop().into(scrollingImageView);
+        Glide.with(getApplicationContext())
+                .load(fullEventImageUrl)
+                .centerCrop()
+                .into(scrollingImageView);
 
     }
 
@@ -86,7 +123,7 @@ public class EventInfoActivity extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if(eventLocation != null){
+        if (eventLocation != null) {
             mMap.addMarker(new MarkerOptions().position(eventLocation).title(eventTitle));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
 
@@ -94,21 +131,46 @@ public class EventInfoActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
-    private double convertCoordinates(String coordinate){
+
+    private double convertCoordinates(String coordinate) {
         return Double.parseDouble(coordinate);
     }
 
-    private void initViews(){
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        eventNameTextView = (TextView) findViewById(R.id.event_name_textview);
-        eventInfoTextView = (TextView) findViewById(R.id.event_desc_textview);
-        scrollingImageView = (ImageView) findViewById(R.id.main_backdrop);
-        eventTimeTextVIew = (TextView) findViewById(R.id.event_time_textview);
-        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.map_holder);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
-        mapFragment.getMapAsync(this);
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fab_event_info_button:
+                FabTransformation.with(eventFAB)
+                        .transformTo(fabToolbar);
+                break;
+            case R.id.close_toolbar:
+                FabTransformation.with(eventFAB)
+                        .duration(200)
+                        .transformFrom(fabToolbar);
+                break;
+
+            case R.id.chrome_button_toolbar:
+                Uri uri = Uri.parse(eventUrl);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
+                break;
+
+            case R.id.share_button_toolbar:
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
+                break;
+
+
+        }
     }
+
 }
+
+
+
+
