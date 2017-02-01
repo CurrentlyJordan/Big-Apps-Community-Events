@@ -23,26 +23,16 @@
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-<<<<<<< HEAD
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-=======
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            >
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
             <ImageView
                 android:id="@+id/main_backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-<<<<<<< HEAD
                 app:layout_collapseMode="parallax" />
 
-=======
-                app:layout_collapseMode="parallax"
-                />
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
             <android.support.v7.widget.Toolbar
                 android:id="@+id/main.toolbar"
                 android:layout_width="match_parent"
@@ -103,7 +93,6 @@
             </LinearLayout>
 
         </LinearLayout>
-<<<<<<< HEAD
 
     </android.support.v4.widget.NestedScrollView>
 
@@ -179,11 +168,3 @@
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
-=======
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
-
-
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
-

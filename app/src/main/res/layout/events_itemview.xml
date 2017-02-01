@@ -5,24 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
-<<<<<<< HEAD
     android:orientation="vertical"
     app:cardCornerRadius="10dp">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-=======
-    app:cardCornerRadius="10dp"
-    android:layout_margin="5dp"
-    android:padding="5dp"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
         android:layout_margin="3dp"
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -41,33 +33,20 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-<<<<<<< HEAD
         <ImageView
             android:id="@+id/event_imageview"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="225dp"
             android:padding="5dp" />
 
         <TextView
             android:id="@+id/short_desc_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp" />
-=======
-    <ImageView
-        android:padding="5dp"
-        android:id="@+id/event_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="225dp" />
-
-    <TextView
-        android:padding="5dp"
-        android:textSize="15sp"
-        android:id="@+id/short_desc_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
+            android:padding="5dp"
+            android:textSize="15sp" />
 
     </LinearLayout>
+
 
 </android.support.v7.widget.CardView>

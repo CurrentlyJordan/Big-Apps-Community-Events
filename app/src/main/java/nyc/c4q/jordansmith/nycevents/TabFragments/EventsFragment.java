@@ -29,7 +29,7 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
-    public void initalize(View rootView){
+    public void initalize(View rootView) {
         nycEventButton = (LinearLayout) rootView.findViewById(R.id.event_button_nyc);
         nycEventButton.setOnClickListener(this);
         parkEventButton = (LinearLayout) rootView.findViewById(R.id.park_event_button);
@@ -39,7 +39,7 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.event_button_nyc:
                 getFragmentManager()
                         .beginTransaction()

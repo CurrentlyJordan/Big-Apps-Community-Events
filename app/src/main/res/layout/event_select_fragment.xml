@@ -7,8 +7,6 @@
     android:orientation="vertical">
 
 
-<<<<<<< HEAD
-=======
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -16,7 +14,6 @@
 
     </View>
 
->>>>>>> ddba71577bec6fa3cfa1b87e4e188d88e400f5d8
     <LinearLayout
         android:id="@+id/event_button_nyc"
         android:layout_width="match_parent"
