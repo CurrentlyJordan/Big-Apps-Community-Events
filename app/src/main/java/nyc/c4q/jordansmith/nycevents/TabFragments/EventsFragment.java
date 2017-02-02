@@ -17,8 +17,9 @@ import nyc.c4q.jordansmith.nycevents.R;
  */
 
 public class EventsFragment extends Fragment implements View.OnClickListener {
-    LinearLayout nycEventButton;
-    LinearLayout parkEventButton;
+    private LinearLayout nycEventButton;
+    private LinearLayout parkEventButton;
+    private LinearLayout pointOfInterestButton;
     View rootView;
 
 
@@ -35,6 +36,8 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
         nycEventButton.setOnClickListener(this);
         parkEventButton = (LinearLayout) rootView.findViewById(R.id.park_event_button);
         parkEventButton.setOnClickListener(this);
+        pointOfInterestButton = (LinearLayout) rootView.findViewById(R.id.points_of_interest_button);
+        pointOfInterestButton.setOnClickListener(this);
     }
 
 
@@ -55,6 +58,14 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.points_of_interest_button:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new POISelectActivity())
+                        .addToBackStack(null)
+                        .commit();
+                break;
         }
     }
+
 }

@@ -141,6 +141,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
 
 
     private double convertCoordinates(String coordinate) {
+
         return Double.parseDouble(coordinate);
     }
 
