@@ -76,10 +76,6 @@ public class ParksEventsFragments extends Fragment {
                         adapter = new ParkEventsAdapter(eventItems);
                         recyclerView.setAdapter(adapter);
 
-
-
-
-
                     } else {
                         Log.d(TAG, "Error" + response.errorBody().string());
                     }
