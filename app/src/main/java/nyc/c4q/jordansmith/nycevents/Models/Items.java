@@ -15,6 +15,7 @@ public class Items implements Serializable{
     private boolean canceled;
     private String permalink;
     private String name;
+
     private String desc;
     private String shortDesc;
     private String website;
@@ -70,5 +71,53 @@ public class Items implements Serializable{
 
     public List<Geometry> getGeometry() {
         return geometry;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setDatePart(String datePart) {
+        this.datePart = datePart;
+    }
+
+    public void setTimePart(String timePart) {
+        this.timePart = timePart;
+    }
+
+    public void setCanceled(boolean canceled) {
+        this.canceled = canceled;
+    }
+
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setBoroughs(List<String> boroughs) {
+        this.boroughs = boroughs;
+    }
+
+    public void setGeometry(List<Geometry> geometry) {
+        this.geometry = geometry;
     }
 }

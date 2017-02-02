@@ -17,10 +17,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tabfragments.EventInfoActivity"></activity>
+        <activity android:name=".tabfragments.EventInfoActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU"/>
+            android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
+
+        <activity android:name=".ParkEventInfoActivity"></activity>
     </application>
 
 </manifest>
