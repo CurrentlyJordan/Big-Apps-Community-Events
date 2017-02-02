@@ -152,10 +152,18 @@ public class Item implements EventInterface {
         transformedItem.setWebsite(getLink());
         transformedItem.setTimePart(getStarttime());
         transformedItem.setDatePart(getStartdate());
-        transformedItem.setShortDesc(getDescription());
+        transformedItem.setShortDesc(getDescription().substring(0,150) + "...");
         List<Geometry> geometryList = new ArrayList<>();
         Geometry geometry = new Geometry();
-         
+        String lat,lon;
+        String fullCoordinates = getCoordinates();
+        String [] array = fullCoordinates.split(", ");
+        lat = array[0];
+        lon = array[1];
+        geometry.setLat(lat);
+        geometry.setLng(lon);
+        geometryList.add(geometry);
+        transformedItem.setGeometry(geometryList);
         return transformedItem;
     }
 }

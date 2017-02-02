@@ -3,11 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Home" />
+        android:id="@+id/type_of_data_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/home_fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:layout_gravity="center">
+         </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_holder"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/saved_places_button"
+            android:text="Saved Places"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp" />
+        <Button
+            android:id="@+id/saved_events_button"
+            android:text="Saved Events"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_shape"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="45dp" />
+
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
