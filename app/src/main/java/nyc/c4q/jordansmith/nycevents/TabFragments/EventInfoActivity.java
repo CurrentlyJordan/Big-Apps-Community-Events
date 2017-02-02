@@ -81,7 +81,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
         shareButton.setOnClickListener(this);
-        SetEventInfo();
+        
     }
 
 
