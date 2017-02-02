@@ -7,6 +7,14 @@ import java.io.Serializable;
  */
 
 public class Geometry implements Serializable {
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
     private String lat;
     private String lng;
 

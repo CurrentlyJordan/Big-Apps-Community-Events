@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import nyc.c4q.jordansmith.nycevents.NYCEventsFragments;
+import nyc.c4q.jordansmith.nycevents.ParksEventsFragments;
 import nyc.c4q.jordansmith.nycevents.R;
 
 /**
@@ -44,6 +45,13 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
                 getFragmentManager()
                         .beginTransaction()
                         .add(R.id.event_select_id, new NYCEventsFragments())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.park_event_button:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new ParksEventsFragments())
                         .addToBackStack(null)
                         .commit();
                 break;
