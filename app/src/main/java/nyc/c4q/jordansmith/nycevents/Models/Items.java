@@ -9,8 +9,8 @@ import java.util.List;
  */
 
 
-public class Items implements Serializable {
 
+public class Items implements Serializable{
     private Long _id;
 
     private String startDate;
@@ -123,4 +123,5 @@ public class Items implements Serializable {
     public void setGeometry(List<Geometry> geometry) {
         this.geometry = geometry;
     }
+
 }

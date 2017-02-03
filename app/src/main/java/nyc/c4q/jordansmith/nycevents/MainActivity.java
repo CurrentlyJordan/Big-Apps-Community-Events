@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     EventsDatabaseHelper dbHelper;
     SQLiteDatabase db;
-    //private StorageReference mStorageRef;
 
 
 
@@ -33,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         populateFragmentList();
 
-
         dbHelper = EventsDatabaseHelper.getInstance(this);
         db = dbHelper.getWritableDatabase();
-
-      //  mStorageRef = FirebaseStorage.getInstance().getReference();
 
 
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
