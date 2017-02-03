@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "259271405638",
+    "firebase_url": "https://big-apps-community-events.firebaseio.com",
+    "project_id": "big-apps-community-events",
+    "storage_bucket": "big-apps-community-events.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259271405638:android:d1fe9fd8535f5125",
+        "android_client_info": {
+          "package_name": "nyc.c4q.jordansmith.nycevents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "259271405638-hs8eccd7m7ebsheupdb3nmhvc8u4bv94.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nyc.c4q.jordansmith.nycevents",
+            "certificate_hash": "A88754047F178B6B88C9ED3AA3E315B2202CF2E1"
+          }
+        },
+        {
+          "client_id": "259271405638-s6m350n26hnj0k4k8it4p4dkifnrdn9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxYaKaxc3Eb6YBh-Dta-2DqYWZTBcUmWQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "259271405638-s6m350n26hnj0k4k8it4p4dkifnrdn9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

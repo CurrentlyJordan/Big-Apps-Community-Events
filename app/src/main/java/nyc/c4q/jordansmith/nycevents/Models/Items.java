@@ -8,7 +8,11 @@ import java.util.List;
  *
  */
 
+
+
 public class Items implements Serializable{
+    private Long _id;
+
     private String startDate;
     private String datePart;
     private String timePart;
@@ -22,7 +26,6 @@ public class Items implements Serializable{
     private String imageUrl;
     private List<String> boroughs;
     private List<Geometry> geometry;
-
 
 
     public String getStartDate() {
@@ -120,4 +123,5 @@ public class Items implements Serializable{
     public void setGeometry(List<Geometry> geometry) {
         this.geometry = geometry;
     }
+
 }
