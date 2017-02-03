@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +24,7 @@ import com.konifar.fab_transformation.FabTransformation;
 
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
+import nyc.c4q.jordansmith.nycevents.SavedData;
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
 import static nyc.c4q.jordansmith.nycevents.R.id.map;
@@ -43,6 +45,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     LatLng eventLocation;
     String eventTitle;
     SupportMapFragment mapFragment;
+    Items eventItem;
 
 
     @Override
@@ -80,13 +83,15 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
         shareButton.setOnClickListener(this);
+        ImageView saveButton = (ImageView) findViewById(R.id.add_button_toolbar);
+        saveButton.setOnClickListener(this);
         SetEventInfo();
     }
 
 
     private void SetEventInfo() {
         Intent intent = getIntent();
-        Items eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
+        eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
@@ -164,6 +169,11 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
+            case R.id.add_button_toolbar:
+                SavedData.savedEvents.add(eventItem);
+                Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                break;
+
 
 
         }
