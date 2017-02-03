@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.konifar.fab_transformation.FabTransformation;
 
+import nyc.c4q.jordansmith.nycevents.DatabaseEvent;
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.SavedData;
@@ -179,7 +180,8 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
             case R.id.add_button_toolbar:
-                SavedData.savedEvents.add(eventItem);
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
+                SavedData.savedEvents.add(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 break;
 

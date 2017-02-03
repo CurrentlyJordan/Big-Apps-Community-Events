@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
     ImageView imageView;
 
-    EventsDatabaseHelper dbHelper;
+//    EventsDatabaseHelper dbHelper;
     SQLiteDatabase db;
 
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         populateFragmentList();
 
-        dbHelper = EventsDatabaseHelper.getInstance(this);
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
         db = dbHelper.getWritableDatabase();
 
 

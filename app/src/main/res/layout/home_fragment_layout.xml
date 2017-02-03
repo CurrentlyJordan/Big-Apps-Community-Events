@@ -3,6 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <TextView
+        android:text="Saved Events"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/default_event_image"
+        android:id="@+id/type_of_data_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/home_fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:layout_gravity="center">
+         </LinearLayout>
     <LinearLayout
         android:id="@+id/button_holder"
         android:orientation="horizontal"
@@ -34,23 +53,4 @@
             android:layout_weight="1"
             android:layout_height="50dp" />
     </LinearLayout>
-    <TextView
-        android:text="Saved Events"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/default_event_image"
-        android:id="@+id/type_of_data_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/home_fragment_holder"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:layout_gravity="center">
-         </LinearLayout>
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.SavedEventsChildFragment;
+import nyc.c4q.jordansmith.nycevents.SavedPlacesChildFragment;
 
 /**
  * Created by jordansmith on 1/29/17.
@@ -36,6 +37,19 @@ public class HomeFragment extends Fragment {
         showSavedPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                info_display.setText("Saved Places");
+                info_display.setBackgroundResource(R.drawable.places_image);
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.home_fragment_holder, new SavedPlacesChildFragment())
+                        .commit();
+            }
+        });
+
+        showSavedEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                info_display.setText("Saved Events");
+                info_display.setBackgroundResource(R.drawable.default_event_image);
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.home_fragment_holder, new SavedEventsChildFragment())
                         .commit();
