@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         populateFragmentList();
 
-        dbHelper = EventsDatabaseHelper.getInstance(this);
-        db = dbHelper.getWritableDatabase();
+//        dbHelper = EventsDatabaseHelper.getInstance(this);
+//        db = dbHelper.getWritableDatabase();
 
 
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);

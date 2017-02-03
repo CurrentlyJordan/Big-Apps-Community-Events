@@ -21,10 +21,12 @@
             android:drawableTop="@drawable/museum"
             android:text="Museums"
             android:background="@null"
+            android:clickable="true"
             android:layout_weight="1" />
 
 
         <Button
+            android:id="@+id/poi_zoo_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
