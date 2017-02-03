@@ -24,7 +24,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
 
-        <activity android:name=".ParkEventInfoActivity"></activity>
+        <activity android:name=".ParkEventInfoActivity" />
+        <activity android:name=".NYCEventsSplashScreen"></activity>
     </application>
 
 </manifest>

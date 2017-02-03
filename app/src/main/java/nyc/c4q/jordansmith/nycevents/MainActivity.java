@@ -1,5 +1,6 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList = new ArrayList<>();
     ImageView imageView;
 
+    EventsDatabaseHelper dbHelper;
+    SQLiteDatabase db;
+
 
 
     @Override
@@ -27,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateFragmentList();
+
+        dbHelper = EventsDatabaseHelper.getInstance(this);
+        db = dbHelper.getWritableDatabase();
+
+
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
