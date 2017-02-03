@@ -86,6 +86,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         ImageView saveButton = (ImageView) findViewById(R.id.add_button_toolbar);
         saveButton.setOnClickListener(this);
         SetEventInfo();
+
     }
 
 
@@ -96,11 +97,24 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
         eventTitle = eventItem.getName();
+        eventUrl = eventItem.getWebsite();
+        if (eventUrl == null) {
+            eventUrl = eventItem.getPermalink();
+        }
+        setImage();
+        setGeometry();
+
+    }
+
+    public void setImage() {
         if (eventItem.getImageUrl() == null) {
             scrollingImageView.setImageResource(R.drawable.default_event_image);
         } else {
             setEventImageURL(eventItem.getImageUrl());
         }
+    }
+
+    public void setGeometry() {
         if (eventItem.getGeometry() != null) {
             double eventLat = convertCoordinates(eventItem.getGeometry().get(0).getLat());
             double eventLong = convertCoordinates(eventItem.getGeometry().get(0).getLng());
@@ -108,11 +122,6 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         } else {
             mapHolderLinearLayout.setVisibility(View.GONE);
         }
-        eventUrl = eventItem.getWebsite();
-        if (eventUrl == null) {
-            eventUrl = eventItem.getPermalink();
-        }
-
     }
 
     public void setEventImageURL(String imageURL) {
@@ -121,7 +130,6 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 .load(fullEventImageUrl)
                 .centerCrop()
                 .into(scrollingImageView);
-
     }
 
     @Override
@@ -138,6 +146,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
 
 
     private double convertCoordinates(String coordinate) {
+
         return Double.parseDouble(coordinate);
     }
 
@@ -173,7 +182,6 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 SavedData.savedEvents.add(eventItem);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 break;
-
 
 
         }
