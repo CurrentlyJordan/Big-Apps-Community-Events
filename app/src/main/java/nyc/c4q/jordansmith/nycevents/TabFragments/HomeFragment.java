@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import nyc.c4q.jordansmith.nycevents.R;
+import nyc.c4q.jordansmith.nycevents.SavedEventsChildFragment;
 
 /**
  * Created by jordansmith on 1/29/17.
@@ -28,6 +29,20 @@ public class HomeFragment extends Fragment {
         showSavedPlaces = (Button)rootView.findViewById(R.id.saved_places_button);
         info_display = (TextView) rootView.findViewById(R.id.type_of_data_text_view);
 
+        getChildFragmentManager().beginTransaction()
+                .replace(R.id.home_fragment_holder, new SavedEventsChildFragment())
+                .commit();
+
+        showSavedPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getChildFragmentManager().beginTransaction()
+                        .replace(R.id.home_fragment_holder, new SavedEventsChildFragment())
+                        .commit();
+            }
+        });
+
         return rootView;
     }
+
 }

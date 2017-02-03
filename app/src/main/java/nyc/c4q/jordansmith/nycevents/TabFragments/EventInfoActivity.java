@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +24,7 @@ import com.konifar.fab_transformation.FabTransformation;
 
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
+import nyc.c4q.jordansmith.nycevents.SavedData;
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
 import static nyc.c4q.jordansmith.nycevents.R.id.map;
@@ -81,7 +83,10 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
         shareButton.setOnClickListener(this);
-        
+        ImageView saveButton = (ImageView) findViewById(R.id.add_button_toolbar);
+        saveButton.setOnClickListener(this);
+        SetEventInfo();
+
     }
 
 
@@ -91,16 +96,14 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
-        if (eventItem.getImageUrl() == null) {
-            scrollingImageView.setImageResource(R.drawable.default_event_image);
-            eventTitle = eventItem.getName();
-            eventUrl = eventItem.getWebsite();
-            if (eventUrl == null) {
-                eventUrl = eventItem.getPermalink();
-            }
-            setImage();
-            setGeometry();
+        eventTitle = eventItem.getName();
+        eventUrl = eventItem.getWebsite();
+        if (eventUrl == null) {
+            eventUrl = eventItem.getPermalink();
         }
+        setImage();
+        setGeometry();
+
     }
 
     public void setImage() {
@@ -127,7 +130,6 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 .load(fullEventImageUrl)
                 .centerCrop()
                 .into(scrollingImageView);
-
     }
 
     @Override
@@ -175,6 +177,10 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
+                break;
+            case R.id.add_button_toolbar:
+                SavedData.savedEvents.add(eventItem);
+                Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 break;
 
 
