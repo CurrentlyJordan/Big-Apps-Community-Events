@@ -43,6 +43,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     LatLng eventLocation;
     String eventTitle;
     SupportMapFragment mapFragment;
+    Items eventItem;
 
 
     @Override
@@ -80,22 +81,34 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
         shareButton.setOnClickListener(this);
-        SetEventInfo();
+        
     }
 
 
     private void SetEventInfo() {
         Intent intent = getIntent();
-        Items eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
+        eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
         eventTitle = eventItem.getName();
+        eventUrl = eventItem.getWebsite();
+        if (eventUrl == null) {
+            eventUrl = eventItem.getPermalink();
+        }
+        setImage();
+        setGeometry();
+    }
+
+    public void setImage() {
         if (eventItem.getImageUrl() == null) {
             scrollingImageView.setImageResource(R.drawable.default_event_image);
         } else {
             setEventImageURL(eventItem.getImageUrl());
         }
+    }
+
+    public void setGeometry() {
         if (eventItem.getGeometry() != null) {
             double eventLat = convertCoordinates(eventItem.getGeometry().get(0).getLat());
             double eventLong = convertCoordinates(eventItem.getGeometry().get(0).getLng());
@@ -103,11 +116,6 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         } else {
             mapHolderLinearLayout.setVisibility(View.GONE);
         }
-        eventUrl = eventItem.getWebsite();
-        if (eventUrl == null) {
-            eventUrl = eventItem.getPermalink();
-        }
-
     }
 
     public void setEventImageURL(String imageURL) {
@@ -133,6 +141,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
 
 
     private double convertCoordinates(String coordinate) {
+
         return Double.parseDouble(coordinate);
     }
 
