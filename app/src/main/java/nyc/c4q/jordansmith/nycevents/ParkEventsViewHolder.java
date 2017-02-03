@@ -11,21 +11,22 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import nyc.c4q.jordansmith.nycevents.models.Items;
-import nyc.c4q.jordansmith.nycevents.tabfragments.EventInfoActivity;
 
 /**
- * Created by helenchan on 1/29/17.
+ * Created by jordansmith on 2/1/17.
  */
-public class EventsViewHolder extends RecyclerView.ViewHolder {
+
+public class ParkEventsViewHolder extends RecyclerView.ViewHolder {
+    Items eventItems;
     TextView date_TV;
     TextView nameTV;
     TextView descriptionTV;
     ImageView eventImage;
     String imageURL;
-    Items eventItems;
     public final static String EVENT_TAG = "SELECTED IMAGE";
 
-    public EventsViewHolder(final View itemView) {
+
+    public ParkEventsViewHolder(View itemView) {
         super(itemView);
         final Context context = itemView.getContext();
         date_TV = (TextView)itemView.findViewById(R.id.date_tv);
@@ -33,17 +34,15 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
         descriptionTV = (TextView) itemView.findViewById(R.id.short_desc_tv);
         eventImage = (ImageView)itemView.findViewById(R.id.event_imageview);
 
-
-
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EventInfoActivity.class);
+                Intent intent = new Intent(context, ParkEventInfoActivity.class);
                 intent.putExtra(EVENT_TAG, eventItems);
                 context.startActivity(intent);
-
             }
         });
+
     }
 
     public void bind(Items eventItems) {
@@ -56,18 +55,12 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
             eventImage.setVisibility(View.GONE);
         }else {
             eventImage.setVisibility(View.VISIBLE);
-            imageURL = setImageURL(imageURL);
             setImage(imageURL);
         }
-    }
-
-    public String setImageURL(String imageURL){
-        return "http://www1.nyc.gov" + imageURL;
     }
 
     public void setImage(String imageURL){
         Glide.with(itemView.getContext()).load(imageURL).centerCrop().into(eventImage);
 
     }
-
 }

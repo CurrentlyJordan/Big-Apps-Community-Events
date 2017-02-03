@@ -1,77 +1,60 @@
-package nyc.c4q.jordansmith.nycevents.TabFragments;
+package nyc.c4q.jordansmith.nycevents.tabfragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import nyc.c4q.jordansmith.nycevents.BuildConfig;
-import nyc.c4q.jordansmith.nycevents.EventService;
-import nyc.c4q.jordansmith.nycevents.EventsAdapter;
-import nyc.c4q.jordansmith.nycevents.Models.EventsResponse;
-import nyc.c4q.jordansmith.nycevents.Models.Items;
+import nyc.c4q.jordansmith.nycevents.NYCEventsFragments;
+import nyc.c4q.jordansmith.nycevents.ParksEventsFragments;
 import nyc.c4q.jordansmith.nycevents.R;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by jordansmith on 1/29/17.
  */
 
-public class EventsFragment extends Fragment {
-    private String myApiKey = BuildConfig.API_KEY;
-    private String myAppId = BuildConfig.APP_ID;
-    private RecyclerView recyclerView;
-    private EventsAdapter adapter;
-    List<Items> eventsList = new ArrayList<>();
+public class EventsFragment extends Fragment implements View.OnClickListener {
+    LinearLayout nycEventButton;
+    LinearLayout parkEventButton;
     View rootView;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.events_fragment_layout, container, false);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.event_rv);
+        rootView = inflater.inflate(R.layout.event_select_fragment, container, false);
+        initalize(rootView);
         return rootView;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        fetchEvents();
+    public void initalize(View rootView) {
+        nycEventButton = (LinearLayout) rootView.findViewById(R.id.event_button_nyc);
+        nycEventButton.setOnClickListener(this);
+        parkEventButton = (LinearLayout) rootView.findViewById(R.id.park_event_button);
+        parkEventButton.setOnClickListener(this);
     }
 
-    public void fetchEvents(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.cityofnewyork.us/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        EventService service = retrofit.create(EventService.class);
-        Call<EventsResponse> call = service.getEvents(myAppId, myApiKey);
-        call.enqueue(new Callback<EventsResponse>() {
-            @Override
-            public void onResponse(Call<EventsResponse> call, Response<EventsResponse> response) {
-                eventsList = response.body().getItems();
-                recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-                adapter = new EventsAdapter(eventsList);
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<EventsResponse> call, Throwable t) {
-
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.event_button_nyc:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new NYCEventsFragments())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.park_event_button:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new ParksEventsFragments())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+        }
     }
 }
