@@ -3,14 +3,17 @@
     android:id="@+id/event_select_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:orientation="vertical">
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="@color/grey"></View>
+        android:background="@color/grey">
+
+    </View>
 
     <LinearLayout
         android:id="@+id/event_button_nyc"
@@ -26,13 +29,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="30dp"
-            android:src="@drawable/clockcal" />
+            android:src="@drawable/citycolor" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Events Now"
+            android:text="City Events"
             android:textSize="16sp" />
 
 
@@ -63,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Events Now"
+            android:text="Park Events"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -74,7 +77,7 @@
         android:background="@color/grey"></View>
 
     <LinearLayout
-        android:id="@+id/some_event"
+        android:id="@+id/points_of_interest_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
@@ -93,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Some Events"
+            android:text="Point of Interests"
             android:textSize="16sp" />
 
     </LinearLayout>

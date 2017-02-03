@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -17,34 +16,53 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/date_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="15sp"
-            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/name_of_event_tv"
+            android:id="@+id/museum_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:textSize="20sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/event_imageview"
+        <TextView
+            android:id="@+id/museum_address_tv"
             android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:padding="5dp" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/short_desc_tv"
+            android:id="@+id/museum_phone_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="5dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/museum_rate_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/museum_specials_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/museum_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

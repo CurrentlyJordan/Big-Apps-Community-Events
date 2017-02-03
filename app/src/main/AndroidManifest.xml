@@ -3,6 +3,7 @@
     package="nyc.c4q.jordansmith.nycevents">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tabfragments.EventInfoActivity"></activity>
+        <activity android:name=".tabfragments.EventInfoActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
+
+        <activity android:name=".ParkEventInfoActivity"></activity>
     </application>
 
 </manifest>

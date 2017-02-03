@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import nyc.c4q.jordansmith.nycevents.NYCEventsFragments;
+import nyc.c4q.jordansmith.nycevents.ParksEventsFragments;
 import nyc.c4q.jordansmith.nycevents.R;
 
 /**
@@ -16,8 +17,9 @@ import nyc.c4q.jordansmith.nycevents.R;
  */
 
 public class EventsFragment extends Fragment implements View.OnClickListener {
-    LinearLayout nycEventButton;
-    LinearLayout parkEventButton;
+    private LinearLayout nycEventButton;
+    private LinearLayout parkEventButton;
+    private LinearLayout pointOfInterestButton;
     View rootView;
 
 
@@ -29,17 +31,19 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
-    public void initalize(View rootView){
+    public void initalize(View rootView) {
         nycEventButton = (LinearLayout) rootView.findViewById(R.id.event_button_nyc);
         nycEventButton.setOnClickListener(this);
         parkEventButton = (LinearLayout) rootView.findViewById(R.id.park_event_button);
         parkEventButton.setOnClickListener(this);
+        pointOfInterestButton = (LinearLayout) rootView.findViewById(R.id.points_of_interest_button);
+        pointOfInterestButton.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.event_button_nyc:
                 getFragmentManager()
                         .beginTransaction()
@@ -47,6 +51,21 @@ public class EventsFragment extends Fragment implements View.OnClickListener {
                         .addToBackStack(null)
                         .commit();
                 break;
+            case R.id.park_event_button:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new ParksEventsFragments())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.points_of_interest_button:
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.event_select_id, new POISelectActivity())
+                        .addToBackStack(null)
+                        .commit();
+                break;
         }
     }
+
 }

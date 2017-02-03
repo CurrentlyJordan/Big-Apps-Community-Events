@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.tabfragments;
+package nyc.c4q.jordansmith.nycevents;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -21,14 +21,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.konifar.fab_transformation.FabTransformation;
 
-import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
-import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
-import static nyc.c4q.jordansmith.nycevents.R.id.map;
+import static nyc.c4q.jordansmith.nycevents.R.id.park_map;
 
-
-public class EventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+public class ParkEventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
     TextView eventNameTextView;
     TextView eventInfoTextView;
@@ -43,75 +40,59 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     LatLng eventLocation;
     String eventTitle;
     SupportMapFragment mapFragment;
-    Items eventItem;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_info);
+        setContentView(R.layout.activity_park_event_info);
         initialize();
         initializeButtons();
         SetEventInfo();
-//        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//        .findFragmentById(map);
-//        mapFragment.getMapAsync(this);
     }
 
+
     private void initialize() {
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.park_main_toolbar);
         setSupportActionBar(toolbar);
-        fabToolbar = (Toolbar) findViewById(R.id.fab_toolbar);
-        eventFAB = (FloatingActionButton) findViewById(R.id.fab_event_info_button);
+        fabToolbar = (Toolbar) findViewById(R.id.park_fab_toolbar);
+        eventFAB = (FloatingActionButton) findViewById(R.id.park_fab_event_info_button);
         eventFAB.setOnClickListener(this);
-        eventNameTextView = (TextView) findViewById(R.id.event_name_textview);
-        eventInfoTextView = (TextView) findViewById(R.id.event_desc_textview);
-        eventTimeTextVIew = (TextView) findViewById(R.id.event_time_textview);
-        scrollingImageView = (ImageView) findViewById(R.id.main_backdrop);
-        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.map_holder);
+        eventNameTextView = (TextView) findViewById(R.id.park_event_name_textview);
+        eventInfoTextView = (TextView) findViewById(R.id.park_event_desc_textview);
+        eventTimeTextVIew = (TextView) findViewById(R.id.park_event_time_textview);
+        scrollingImageView = (ImageView) findViewById(R.id.park_main_backdrop);
+        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.park_map_holder);
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
+                .findFragmentById(park_map);
         mapFragment.getMapAsync(this);
     }
 
     private void initializeButtons() {
-        ImageView closeButton = (ImageView) findViewById(R.id.close_toolbar);
+        ImageView closeButton = (ImageView) findViewById(R.id.park_close_toolbar);
         closeButton.setOnClickListener(this);
-        ImageView chromeButton = (ImageView) findViewById(R.id.chrome_button_toolbar);
+        ImageView chromeButton = (ImageView) findViewById(R.id.park_chrome_button_toolbar);
         chromeButton.setOnClickListener(this);
-        ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
+        ImageView shareButton = (ImageView) findViewById(R.id.park_share_button_toolbar);
         shareButton.setOnClickListener(this);
-        
+        SetEventInfo();
     }
-
 
     private void SetEventInfo() {
         Intent intent = getIntent();
-        eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
+        Items eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
+        eventTitle = eventItem.getName();
         if (eventItem.getImageUrl() == null) {
             scrollingImageView.setImageResource(R.drawable.default_event_image);
-            eventTitle = eventItem.getName();
-            eventUrl = eventItem.getWebsite();
-            if (eventUrl == null) {
-                eventUrl = eventItem.getPermalink();
-            }
-            setImage();
-            setGeometry();
         }
-    }
-
-    public void setImage() {
-        if (eventItem.getImageUrl() == null) {
-            scrollingImageView.setImageResource(R.drawable.default_event_image);
-        } else {
-            setEventImageURL(eventItem.getImageUrl());
+        else {
+            Glide.with(getApplicationContext())
+                    .load(eventItem.getImageUrl())
+                    .centerCrop()
+                    .into(scrollingImageView);
         }
-    }
-
-    public void setGeometry() {
         if (eventItem.getGeometry() != null) {
             double eventLat = convertCoordinates(eventItem.getGeometry().get(0).getLat());
             double eventLong = convertCoordinates(eventItem.getGeometry().get(0).getLng());
@@ -119,15 +100,41 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         } else {
             mapHolderLinearLayout.setVisibility(View.GONE);
         }
-    }
+        eventUrl = eventItem.getWebsite();
 
-    public void setEventImageURL(String imageURL) {
-        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
-        Glide.with(getApplicationContext())
-                .load(fullEventImageUrl)
-                .centerCrop()
-                .into(scrollingImageView);
+        }
 
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.park_fab_event_info_button:
+                FabTransformation.with(eventFAB)
+                        .transformTo(fabToolbar);
+                break;
+            case R.id.park_close_toolbar:
+                FabTransformation.with(eventFAB)
+                        .duration(200)
+                        .transformFrom(fabToolbar);
+                break;
+
+            case R.id.park_chrome_button_toolbar:
+                Uri uri = Uri.parse(eventUrl);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
+                break;
+
+            case R.id.park_share_button_toolbar:
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
+                break;
+
+
+        }
     }
 
     @Override
@@ -139,50 +146,9 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
 
         }
-
     }
-
 
     private double convertCoordinates(String coordinate) {
-
         return Double.parseDouble(coordinate);
     }
-
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.fab_event_info_button:
-                FabTransformation.with(eventFAB)
-                        .transformTo(fabToolbar);
-                break;
-            case R.id.close_toolbar:
-                FabTransformation.with(eventFAB)
-                        .duration(200)
-                        .transformFrom(fabToolbar);
-                break;
-
-            case R.id.chrome_button_toolbar:
-                Uri uri = Uri.parse(eventUrl);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-                FabTransformation.with(eventFAB)
-                        .transformFrom(fabToolbar);
-                break;
-
-            case R.id.share_button_toolbar:
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
-                startActivity(Intent.createChooser(shareIntent, "Share via"));
-                break;
-
-
-        }
-    }
-
 }
-
-
-
-
