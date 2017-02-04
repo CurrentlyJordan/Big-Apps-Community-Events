@@ -15,15 +15,18 @@ import java.util.List;
 public class SavedPlaceAdapter extends RecyclerView.Adapter<SavedPlaceAdapter.SavedPlaceViewHolder> {
 
     List<DatabasePlace> placeList;
+    Listener listener;
 
-    SavedPlaceAdapter(List<DatabasePlace> placeList){
+    SavedPlaceAdapter(List<DatabasePlace> placeList, Listener listener ){
         this.placeList = placeList;
+        this.listener = listener;
     }
 
     @Override
     public SavedPlaceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View childView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.saved_places_item_view, parent, false);
+
         return new SavedPlaceViewHolder(childView);
     }
 
@@ -44,24 +47,35 @@ public class SavedPlaceAdapter extends RecyclerView.Adapter<SavedPlaceAdapter.Sa
         TextView nameTextView;
         TextView addressTextView;
         TextView phoneTextView;
-        TextView rateTextView;
-        TextView specialsTextView;
+        DatabasePlace savedPlace;
+
 
         public SavedPlaceViewHolder(View itemView) {
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.saved_museum_name_tv);
             addressTextView = (TextView) itemView.findViewById(R.id.saved_museum_address_tv);
             phoneTextView = (TextView) itemView.findViewById(R.id.saved_museum_phone_tv);
-            rateTextView = (TextView) itemView.findViewById(R.id.saved_museum_rate_tv);
-            specialsTextView = (TextView) itemView.findViewById(R.id.saved_museum_specials_tv);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.onPlaceLongClicked(savedPlace);
+                    return true;
+                }
+            });
+
         }
 
-        public void bind(DatabasePlace databasePlace) {
-            nameTextView.setText(databasePlace.getName());
-            addressTextView.setText(databasePlace.getAddress());
-            phoneTextView.setText(databasePlace.getPhone());
-            rateTextView.setText(databasePlace.getRates());
-            specialsTextView.setText(databasePlace.getSpecials());
+        public void bind(DatabasePlace savedPlace) {
+            this.savedPlace = savedPlace;
+            nameTextView.setText(savedPlace.getName());
+            addressTextView.setText(savedPlace.getAddress());
+            phoneTextView.setText(savedPlace.getPhone());
         }
+    }
+
+    interface Listener{
+        void onPlaceLongClicked(DatabasePlace databasePlace);
+
     }
 }
