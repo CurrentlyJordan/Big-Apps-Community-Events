@@ -39,31 +39,6 @@
             android:clickable="true"
             android:padding="5dp"
             android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/saved_museum_rate_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/saved_museum_specials_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/saved_museum_hours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
