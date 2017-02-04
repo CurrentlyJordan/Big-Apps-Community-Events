@@ -35,6 +35,7 @@ public class EventsDatabaseHelper extends SQLiteOpenHelper {
     static {
         //register our models (tables in our database)
         cupboard().register(DatabaseEvent.class);
+        cupboard().register(DatabasePlace.class);
     }
 
 

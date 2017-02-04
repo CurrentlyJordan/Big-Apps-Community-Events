@@ -93,7 +93,7 @@ public class Museum implements Serializable, PlaceInterface {
 
     @Override
     public DatabasePlace transform() {
-        DatabasePlace databasePlace = new DatabasePlace();
+        DatabasePlace databasePlace = new DatabasePlace("museum");
         databasePlace.setName(this.getName());
         databasePlace.setHours(this.getClosing());
         databasePlace.setPhone(this.getPhone());

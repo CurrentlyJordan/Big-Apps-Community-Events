@@ -1,6 +1,7 @@
 package nyc.c4q.jordansmith.nycevents;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,7 @@ import com.konifar.fab_transformation.FabTransformation;
 
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.jordansmith.nycevents.R.id.park_map;
 
 public class ParkEventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
@@ -42,6 +44,7 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
     String eventTitle;
     SupportMapFragment mapFragment;
     Items eventItem;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
         initialize();
         initializeButtons();
         SetEventInfo();
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
     }
 
 
@@ -138,8 +143,10 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.park_add_button_toolbar:
                 DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
-                SavedData.savedEvents.add(databaseEvent);
+                addEventToDatabase(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
                 break;
 
 
@@ -159,5 +166,9 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
 
     private double convertCoordinates(String coordinate) {
         return Double.parseDouble(coordinate);
+    }
+
+    private void addEventToDatabase(DatabaseEvent databaseEvent) {
+        cupboard().withDatabase(db).put(databaseEvent);
     }
 }
