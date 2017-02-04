@@ -14,7 +14,7 @@ public class EventsDatabaseHelper extends SQLiteOpenHelper {
 
     //create constant values for our database name and version number
     private static final String DATABASE_NAME = "events.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     //making this class a Singleton class - only capable of having a single instance
     private static EventsDatabaseHelper instance;
@@ -41,7 +41,7 @@ public class EventsDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // this will ensure that all tables are created
-        cupboard().withDatabase(db).createTables();
+//        cupboard().withDatabase(db).createTables();
         // add indexes and other database tweaks in this method if you want
     }
 

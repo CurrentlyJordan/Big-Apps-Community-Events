@@ -21,10 +21,12 @@
             android:drawableTop="@drawable/museum"
             android:text="Museums"
             android:background="@null"
+            android:clickable="true"
             android:layout_weight="1" />
 
 
         <Button
+            android:id="@+id/poi_zoo_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
@@ -56,8 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/fountain"
-            android:text="Add event"
+            android:drawableTop="@drawable/carty"
+            android:text="Food Carts"
             android:background="@null"
             android:layout_weight="1" />
 
@@ -74,7 +76,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text="Park Events"
+            android:drawableTop="@drawable/fountain"
+            android:text="Coming Soon"
             android:background="@null"
             android:layout_weight="1" />
 
@@ -82,7 +85,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text="Park Events"
+            android:drawableTop="@drawable/fountain"
+            android:text="Coming Soon"
             android:background="@null"
             android:layout_weight="1"
             android:id="@+id/button" />

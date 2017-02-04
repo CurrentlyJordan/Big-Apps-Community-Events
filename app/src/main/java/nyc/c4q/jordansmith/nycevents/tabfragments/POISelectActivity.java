@@ -10,13 +10,15 @@ import android.widget.Button;
 
 import nyc.c4q.jordansmith.nycevents.MuseumFragment;
 import nyc.c4q.jordansmith.nycevents.R;
+import nyc.c4q.jordansmith.nycevents.ZooAndAquariumFragment;
 
 /**
  * Created by helenchan on 2/2/17.
  */
 public class POISelectActivity extends Fragment implements View.OnClickListener{
     View itemView;
-    Button museumButton;
+    private Button museumButton;
+    private Button zooButton;
 
 
     @Nullable
@@ -30,6 +32,9 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
     private void initalize() {
         museumButton = (Button) itemView.findViewById(R.id.poi_museum_button);
         museumButton.setOnClickListener(this);
+        zooButton = (Button)itemView.findViewById(R.id.poi_zoo_button);
+        zooButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -37,9 +42,16 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.poi_museum_button:
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.poi_button_layout_id, new MuseumFragment())
+                        .add(R.id.poi_button_layout_id, new MuseumFragment())
                         .addToBackStack(null)
                         .commit();
+                break;
+            case R.id.poi_zoo_button:
+                getFragmentManager().beginTransaction()
+                        .add(R.id.poi_button_layout_id, new ZooAndAquariumFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
         }
 
     }
