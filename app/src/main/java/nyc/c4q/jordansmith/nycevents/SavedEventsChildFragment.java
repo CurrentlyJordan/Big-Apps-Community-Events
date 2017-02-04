@@ -107,7 +107,7 @@ public class SavedEventsChildFragment extends Fragment implements SavedEventsAda
     public void onEventLongClicked(DatabaseEvent databaseEvent) {
         long databaseId = databaseEvent.get_id();
         cupboard().withDatabase(db).delete(DatabaseEvent.class, databaseId );
-        Toast.makeText(getContext(), "event deleted!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Event Deleted!", Toast.LENGTH_SHORT).show();
         adapter = new SavedEventsAdapter(retrieveDatabaseEvents(),this);
         recyclerView.setAdapter(adapter);
 
