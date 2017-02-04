@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,6 +41,7 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
     LatLng eventLocation;
     String eventTitle;
     SupportMapFragment mapFragment;
+    Items eventItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +76,14 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.park_share_button_toolbar);
         shareButton.setOnClickListener(this);
+        ImageView saveButton = (ImageView) findViewById(R.id.park_add_button_toolbar);
+        saveButton.setOnClickListener(this);
         SetEventInfo();
     }
 
     private void SetEventInfo() {
         Intent intent = getIntent();
-        Items eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
+        eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
@@ -131,6 +135,11 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
+                break;
+            case R.id.park_add_button_toolbar:
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
+                SavedData.savedEvents.add(databaseEvent);
+                Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 break;
 
 
