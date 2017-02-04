@@ -5,22 +5,48 @@ package nyc.c4q.jordansmith.nycevents;
  */
 public class DatabasePlace {
 
+    private Long _id;
     String name;
     String hours;
     String rates;
     String specials;
     String phone;
-    private Long _id;
     String typeOfEvent;
+    String address;
+    String description;
+    String type;
 
-    public DatabasePlace(String typeOfEvent){
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTypeOfEvent() {
+        return typeOfEvent;
+    }
+
+    public void setTypeOfEvent(String typeOfEvent) {
         this.typeOfEvent = typeOfEvent;
     }
 
-    DatabasePlace(){
-        this.name = "unknown";
+    public String getDescription() {
+        return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public DatabasePlace(String typeOfEvent) {
+        this.typeOfEvent = typeOfEvent;
+    }
+
+    DatabasePlace() {
+        this.name = "unknown";
+    }
 
 
     public Long get_id() {
@@ -38,8 +64,6 @@ public class DatabasePlace {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    String address;
 
 
     public String getName() {
