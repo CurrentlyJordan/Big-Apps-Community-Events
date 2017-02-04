@@ -2,11 +2,16 @@ package nyc.c4q.jordansmith.nycevents.models.zoos_aquariums;
 
 import org.simpleframework.xml.Element;
 
+import java.io.Serializable;
+
+import nyc.c4q.jordansmith.nycevents.DatabasePlace;
+import nyc.c4q.jordansmith.nycevents.PlaceInterface;
+
 /**
  * Created by helenchan on 2/2/17.
  */
 
-public class Facility {
+public class Facility implements PlaceInterface, Serializable{
 
     @Element(name = "Prop_ID", required = false)
     String prop_ID;
@@ -59,4 +64,12 @@ public class Facility {
         this.phone_Num = _value;
     }
 
+    @Override
+    public DatabasePlace transform() {
+        DatabasePlace databasePlace = new DatabasePlace("Zoo");
+        databasePlace.setAddress(getLocation());
+        databasePlace.setName(getName());
+        databasePlace.setPhone(getPhone_Num());
+        return databasePlace;
+    }
 }
