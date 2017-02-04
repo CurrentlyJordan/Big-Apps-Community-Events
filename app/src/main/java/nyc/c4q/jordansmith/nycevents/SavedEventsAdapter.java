@@ -15,9 +15,11 @@ import java.util.List;
 public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.SavedEventsViewHolder> {
 
     List<DatabaseEvent> eventList;
+    Listener listener;
 
-    public SavedEventsAdapter(List<DatabaseEvent> eventList) {
+    public SavedEventsAdapter(List<DatabaseEvent> eventList, Listener listener) {
         this.eventList = eventList;
+        this.listener = listener;
     }
 
     @Override
@@ -48,6 +50,15 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
             super(itemView);
             dateTextView = (TextView) itemView.findViewById(R.id.saved_event_date_tv);
             titleTextView = (TextView) itemView.findViewById(R.id.saved_event_name_of_event_tv);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onEventLongClicked(savedEvent);
+
+                    return true;
+                }
+            });
         }
 
         public void bind(DatabaseEvent savedEvent) {
@@ -55,5 +66,11 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
             dateTextView.setText(savedEvent.getStartDate() + " (" + savedEvent.getStartTime() + ")");
             titleTextView.setText(savedEvent.getName());
         }
+    }
+
+    interface Listener{
+
+        void onEventLongClicked(DatabaseEvent databaseEvent);
+
     }
 }
