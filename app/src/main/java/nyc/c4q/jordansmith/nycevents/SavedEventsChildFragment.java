@@ -61,22 +61,22 @@ public class SavedEventsChildFragment extends Fragment implements SavedEventsAda
         adapter.notifyDataSetChanged();
     }
 
-    public void selectAllEvents(){
-        List<DatabaseEvent> databaseEventList = new ArrayList<>();
-
-        try {
-            // Iterate Events
-            QueryResultIterable<DatabaseEvent> itr = cupboard().withDatabase(db).query(DatabaseEvent.class).query();
-            for (DatabaseEvent databaseEvent: itr) {
-                databaseEventList.add(databaseEvent);
-            }
-            itr.close();
-        } catch (Exception e) {
-            Log.e(TAG, "selectAllEvents: ", e);
-        }
-        SavedData.savedEvents = databaseEventList;
-
-    }
+//    public void selectAllEvents(){
+//        List<DatabaseEvent> databaseEventList = new ArrayList<>();
+//
+//        try {
+//            // Iterate Events
+//            QueryResultIterable<DatabaseEvent> itr = cupboard().withDatabase(db).query(DatabaseEvent.class).query();
+//            for (DatabaseEvent databaseEvent: itr) {
+//                databaseEventList.add(databaseEvent);
+//            }
+//            itr.close();
+//        } catch (Exception e) {
+//            Log.e(TAG, "selectAllEvents: ", e);
+//        }
+//        SavedData.savedEvents = databaseEventList;
+//
+//    }
 
     public List<DatabaseEvent> retrieveDatabaseEvents(){
         List<DatabaseEvent> databaseEventList = new ArrayList<>();
