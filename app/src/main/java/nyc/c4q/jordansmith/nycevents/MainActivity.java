@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
         db = dbHelper.getWritableDatabase();
 
-
         ViewPager vPager = (ViewPager) findViewById(R.id.vPager);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

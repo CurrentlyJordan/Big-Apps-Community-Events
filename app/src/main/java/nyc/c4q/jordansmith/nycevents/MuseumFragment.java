@@ -29,7 +29,6 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 public class MuseumFragment extends Fragment {
     private RecyclerView museumRV;
     List<Museum> museumsList = new ArrayList<>();
-    MuseumAdapter adapter;
     View museumRootView;
 
     @Nullable
