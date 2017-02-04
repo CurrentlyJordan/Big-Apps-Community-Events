@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.models;
+package nyc.c4q.jordansmith.nycevents.models.eateries;
 
 /**
  * Created by helenchan on 2/3/17.
@@ -24,7 +24,7 @@ public class Eateries {
 
 
 
-    public class Facility {
+    public static class Facility {
 
         @Element(name="name", required = false)
         String name;

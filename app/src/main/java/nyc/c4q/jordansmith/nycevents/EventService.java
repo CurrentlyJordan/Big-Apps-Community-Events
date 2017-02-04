@@ -7,6 +7,7 @@ import retrofit2.http.Query;
 
 /**
  * Created by helenchan on 1/29/17.
+ *
  */
 
 public interface EventService {

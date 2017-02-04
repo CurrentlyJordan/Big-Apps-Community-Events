@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import nyc.c4q.jordansmith.nycevents.EateriesFragment;
 import nyc.c4q.jordansmith.nycevents.MuseumFragment;
 import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.ZooAndAquariumFragment;
@@ -19,6 +20,7 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
     View itemView;
     private Button museumButton;
     private Button zooButton;
+    private Button eateryButton;
 
 
     @Nullable
@@ -34,6 +36,8 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
         museumButton.setOnClickListener(this);
         zooButton = (Button)itemView.findViewById(R.id.poi_zoo_button);
         zooButton.setOnClickListener(this);
+        eateryButton = (Button) itemView.findViewById(R.id.poi_eatery_button);
+        eateryButton.setOnClickListener(this);
 
     }
 
@@ -49,6 +53,12 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
             case R.id.poi_zoo_button:
                 getFragmentManager().beginTransaction()
                         .add(R.id.poi_button_layout_id, new ZooAndAquariumFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.poi_eatery_button:
+                getFragmentManager().beginTransaction()
+                        .add(R.id.poi_button_layout_id, new EateriesFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
