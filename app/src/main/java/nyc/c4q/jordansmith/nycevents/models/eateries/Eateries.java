@@ -24,7 +24,7 @@ public class Eateries {
 
 
 
-    public class Facility {
+    public static class Facility {
 
         @Element(name="name", required = false)
         String name;
