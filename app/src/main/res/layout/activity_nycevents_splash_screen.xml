@@ -5,21 +5,19 @@
     android:id="@+id/activity_nycevents_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/default_event_image"
     tools:context="nyc.c4q.jordansmith.nycevents.NYCEventsSplashScreen">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nyc_splash_background"/>
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/nyc_events_logo"
-        android:id="@+id/imageView_skyscrapper_background"
-        android:layout_marginStart="18dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="443dp" />
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/nyc_logo1"
+        android:id="@+id/imageView_logo_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
 </RelativeLayout>

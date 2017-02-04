@@ -7,18 +7,26 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 public class NYCEventsSplashScreen extends AppCompatActivity {
 
-    ImageView imageView;
+    ImageView backgroundImageView;
+    ImageView logoImageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nycevents_splash_screen);
 
-        imageView = (ImageView)findViewById(R.id.imageView_skyscrapper_background);
+        logoImageView2 = (ImageView)findViewById(R.id.imageView_logo_text);
+        backgroundImageView = (ImageView) findViewById(R.id.nyc_splash_background);
+        Picasso.with(getApplicationContext())
+                .load(R.drawable.fittedskyline)
+                .fit()
+                .into(backgroundImageView);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.explore_nyc_welcome);
-        imageView.setAnimation(animation);
+        logoImageView2.setAnimation(animation);
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
