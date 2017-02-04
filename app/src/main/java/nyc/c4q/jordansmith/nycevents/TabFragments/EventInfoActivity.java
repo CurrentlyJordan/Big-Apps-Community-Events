@@ -1,6 +1,7 @@
 package nyc.c4q.jordansmith.nycevents.tabfragments;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,11 +23,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.konifar.fab_transformation.FabTransformation;
 
+import nyc.c4q.jordansmith.nycevents.DatabaseEvent;
+import nyc.c4q.jordansmith.nycevents.EventsDatabaseHelper;
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.SavedData;
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.jordansmith.nycevents.R.id.map;
 
 
@@ -46,6 +49,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     String eventTitle;
     SupportMapFragment mapFragment;
     Items eventItem;
+    SQLiteDatabase db;
 
 
     @Override
@@ -58,6 +62,8 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
 //        mapFragment = (SupportMapFragment) getSupportFragmentManager()
 //        .findFragmentById(map);
 //        mapFragment.getMapAsync(this);
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
     }
 
     private void initialize() {
@@ -178,13 +184,21 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
+
             case R.id.add_button_toolbar:
-                SavedData.savedEvents.add(eventItem);
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
+                addEventToDatabase(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
                 break;
 
 
         }
+    }
+
+    private void addEventToDatabase(DatabaseEvent databaseEvent) {
+        cupboard().withDatabase(db).put(databaseEvent);
     }
 
 }

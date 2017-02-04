@@ -1,6 +1,7 @@
 package nyc.c4q.jordansmith.nycevents;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +25,7 @@ import com.konifar.fab_transformation.FabTransformation;
 
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.jordansmith.nycevents.R.id.park_map;
 
 public class ParkEventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
@@ -40,6 +43,8 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
     LatLng eventLocation;
     String eventTitle;
     SupportMapFragment mapFragment;
+    Items eventItem;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
         initialize();
         initializeButtons();
         SetEventInfo();
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
     }
 
 
@@ -74,12 +81,14 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
         chromeButton.setOnClickListener(this);
         ImageView shareButton = (ImageView) findViewById(R.id.park_share_button_toolbar);
         shareButton.setOnClickListener(this);
+        ImageView saveButton = (ImageView) findViewById(R.id.park_add_button_toolbar);
+        saveButton.setOnClickListener(this);
         SetEventInfo();
     }
 
     private void SetEventInfo() {
         Intent intent = getIntent();
-        Items eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
+        eventItem = (Items) intent.getSerializableExtra(EventsViewHolder.EVENT_TAG);
         eventNameTextView.setText(eventItem.getName());
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
@@ -132,6 +141,13 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
+            case R.id.park_add_button_toolbar:
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
+                addEventToDatabase(databaseEvent);
+                Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
+                break;
 
 
         }
@@ -150,5 +166,9 @@ public class ParkEventInfoActivity extends AppCompatActivity implements View.OnC
 
     private double convertCoordinates(String coordinate) {
         return Double.parseDouble(coordinate);
+    }
+
+    private void addEventToDatabase(DatabaseEvent databaseEvent) {
+        cupboard().withDatabase(db).put(databaseEvent);
     }
 }

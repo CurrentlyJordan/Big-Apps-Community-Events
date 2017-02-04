@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import nyc.c4q.jordansmith.nycevents.models.Items;
-
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
@@ -36,7 +34,8 @@ public class EventsDatabaseHelper extends SQLiteOpenHelper {
 
     static {
         //register our models (tables in our database)
-        cupboard().register(Items.class);
+        cupboard().register(DatabaseEvent.class);
+        cupboard().register(DatabasePlace.class);
     }
 
 

@@ -8,18 +8,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.models.Items;
-
 /**
  * Created by jordansmith on 2/2/17.
  */
 
 public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.SavedEventsViewHolder> {
 
-    List<Items> eventList;
+    List<DatabaseEvent> eventList;
+    Listener listener;
 
-    public SavedEventsAdapter(List<Items> eventList) {
+    public SavedEventsAdapter(List<DatabaseEvent> eventList, Listener listener) {
         this.eventList = eventList;
+        this.listener = listener;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
 
     @Override
     public void onBindViewHolder(SavedEventsViewHolder holder, int position) {
-        Items savedEvent = eventList.get(position);
+        DatabaseEvent savedEvent = eventList.get(position);
         holder.bind(savedEvent);
 
     }
@@ -44,21 +44,33 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
     public class SavedEventsViewHolder extends RecyclerView.ViewHolder {
         TextView dateTextView;
         TextView titleTextView;
-        TextView descTextView;
-        Items savedEvent;
+        DatabaseEvent savedEvent;
 
         public SavedEventsViewHolder(View itemView) {
             super(itemView);
             dateTextView = (TextView) itemView.findViewById(R.id.saved_event_date_tv);
             titleTextView = (TextView) itemView.findViewById(R.id.saved_event_name_of_event_tv);
-            descTextView = (TextView) itemView.findViewById(R.id.saved_event_short_desc_tv);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    listener.onEventLongClicked(savedEvent);
+
+                    return true;
+                }
+            });
         }
 
-        public void bind(Items savedEvent) {
+        public void bind(DatabaseEvent savedEvent) {
             this.savedEvent = savedEvent;
-            dateTextView.setText(savedEvent.getDatePart() + " (" + savedEvent.getTimePart() + ")");
+            dateTextView.setText(savedEvent.getStartDate() + " (" + savedEvent.getStartTime() + ")");
             titleTextView.setText(savedEvent.getName());
-            descTextView.setText(savedEvent.getShortDesc());
         }
+    }
+
+    interface Listener{
+
+        void onEventLongClicked(DatabaseEvent databaseEvent);
+
     }
 }

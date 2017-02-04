@@ -4,11 +4,14 @@ import org.simpleframework.xml.Element;
 
 import java.io.Serializable;
 
+import nyc.c4q.jordansmith.nycevents.DatabasePlace;
+import nyc.c4q.jordansmith.nycevents.PlaceInterface;
+
 /**
  * Created by helenchan on 2/1/17.
  */
 
-public class Museum implements Serializable {
+public class Museum implements Serializable, PlaceInterface {
 
     @Element(name = "name", required = false)
     String name;
@@ -88,4 +91,16 @@ public class Museum implements Serializable {
     }
 
 
+    @Override
+    public DatabasePlace transform() {
+        DatabasePlace databasePlace = new DatabasePlace("museum");
+        databasePlace.setName(this.getName());
+        databasePlace.setHours(this.getClosing());
+        databasePlace.setPhone(this.getPhone());
+        databasePlace.setRates(this.getRates());
+        databasePlace.setSpecials(this.getSpecials());
+        databasePlace.setAddress(this.getAddress());
+        return databasePlace;
+
+    }
 }

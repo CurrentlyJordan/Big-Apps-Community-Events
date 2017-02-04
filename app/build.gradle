@@ -50,5 +50,6 @@ dependencies {
         exclude module: 'stax'
         exclude module: 'xpp3'
     }
+    compile 'com.facebook.stetho:stetho:1.4.1'
 }
 
