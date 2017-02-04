@@ -31,6 +31,7 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
 
 
 
+
     public MuseumViewHolder(View itemView) {
         super(itemView);
         EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(itemView.getContext());
