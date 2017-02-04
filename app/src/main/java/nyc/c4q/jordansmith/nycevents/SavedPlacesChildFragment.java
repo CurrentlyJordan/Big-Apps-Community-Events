@@ -51,7 +51,8 @@ public class SavedPlacesChildFragment extends Fragment implements SavedPlaceAdap
     @Override
     public void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
+        adapter = new SavedPlaceAdapter(retrieveDatabasePlaces(),this);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -62,6 +63,7 @@ public class SavedPlacesChildFragment extends Fragment implements SavedPlaceAdap
         adapter = new SavedPlaceAdapter(retrieveDatabasePlaces(),this);
         recyclerView.setAdapter(adapter);
     }
+
 
     public List<DatabasePlace> retrieveDatabasePlaces(){
         List<DatabasePlace> databasePlaceList = new ArrayList<>();
