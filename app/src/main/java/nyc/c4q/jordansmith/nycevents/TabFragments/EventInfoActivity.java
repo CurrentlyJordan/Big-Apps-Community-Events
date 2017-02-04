@@ -178,9 +178,12 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
+
             case R.id.add_button_toolbar:
                 SavedData.savedEvents.add(eventItem);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                FabTransformation.with(eventFAB)
+                        .transformFrom(fabToolbar);
                 break;
 
 
