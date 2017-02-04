@@ -1,13 +1,17 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import nyc.c4q.jordansmith.nycevents.models.museums.Museum;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
  * Created by helenchan on 2/1/17.
@@ -22,9 +26,16 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
     private ImageView purpleSaveButton;
     private ImageView greenSaveButton;
     private boolean saveClicked = false;
+    Museum museum;
+    SQLiteDatabase db;
+
+
 
     public MuseumViewHolder(View itemView) {
         super(itemView);
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(itemView.getContext());
+        db = dbHelper.getWritableDatabase();
+
         nameTextView = (TextView) itemView.findViewById(R.id.museum_name_tv);
         hoursTextView = (TextView) itemView.findViewById(R.id.museum_hours);
         addressTextView = (TextView) itemView.findViewById(R.id.museum_address_tv);
@@ -45,6 +56,9 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
                 saveClicked = true;
                 purpleSaveButton.setVisibility(View.INVISIBLE);
                 greenSaveButton.setVisibility(View.VISIBLE);
+                DatabasePlace databasePlace = museum.transform();
+                Toast.makeText(itemView.getContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).put(databasePlace);
             }
         };
     }
@@ -63,6 +77,7 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
 
 
     public void bind(final Museum museum) {
+        this.museum = museum;
         nameTextView.setText(Html.fromHtml(museum.getName()));
         ratesTextView.setText(Html.fromHtml(museum.getRates()));
         addressTextView.setText(Html.fromHtml(museum.getAddress()));
