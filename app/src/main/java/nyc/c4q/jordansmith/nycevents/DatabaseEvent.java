@@ -17,7 +17,7 @@ public class DatabaseEvent {
     String shortDesc;
     String imageUrl;
     String webUrl;
-
+    private Long _id;
 
 
     public DatabaseEvent(Items event){
@@ -35,8 +35,19 @@ public class DatabaseEvent {
 
     }
 
+    DatabaseEvent() {
+        this.name = "unknown";
+        this.description = "unknown";
+        this.imageUrl = "unknown";
+        this.webUrl = "unknown";
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Long get_id() {
+        return _id;
     }
 
     public void setName(String name) {

@@ -28,4 +28,5 @@ public class SavedData {
     public static void setSavedEvents(List<DatabaseEvent> savedEvents) {
         SavedData.savedEvents = savedEvents;
     }
+
 }
