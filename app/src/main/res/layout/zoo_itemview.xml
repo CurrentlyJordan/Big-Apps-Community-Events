@@ -31,13 +31,38 @@
             android:padding="5dp"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/zoo_phone_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:padding="5dp"
-            android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/zoo_phone_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:padding="5dp"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/zoo_like_purple_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:src="@drawable/ic_purple_save" />
+
+            <ImageView
+                android:id="@+id/zoo_like_green_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:src="@drawable/ic_green_save"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
