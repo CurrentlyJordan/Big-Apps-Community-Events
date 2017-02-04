@@ -23,6 +23,7 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
     private ImageView greenSaveButton;
     private boolean saveClicked = false;
 
+
     public MuseumViewHolder(View itemView) {
         super(itemView);
         nameTextView = (TextView) itemView.findViewById(R.id.museum_name_tv);
@@ -45,6 +46,7 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
                 saveClicked = true;
                 purpleSaveButton.setVisibility(View.INVISIBLE);
                 greenSaveButton.setVisibility(View.VISIBLE);
+
             }
         };
     }
