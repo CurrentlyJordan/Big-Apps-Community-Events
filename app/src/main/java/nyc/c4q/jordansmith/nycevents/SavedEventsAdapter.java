@@ -1,5 +1,6 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
         TextView titleTextView;
         DatabaseEvent savedEvent;
 
-        public SavedEventsViewHolder(View itemView) {
+        public SavedEventsViewHolder(final View itemView) {
             super(itemView);
             dateTextView = (TextView) itemView.findViewById(R.id.saved_event_date_tv);
             titleTextView = (TextView) itemView.findViewById(R.id.saved_event_name_of_event_tv);
@@ -57,6 +58,15 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
                     listener.onEventLongClicked(savedEvent);
 
                     return true;
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), SavedEventInfoActivity.class);
+                    intent.putExtra("Saved Event", savedEvent);
+                    itemView.getContext().startActivity(intent);
                 }
             });
         }

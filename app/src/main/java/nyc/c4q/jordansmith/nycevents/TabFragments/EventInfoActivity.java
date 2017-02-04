@@ -131,9 +131,9 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void setEventImageURL(String imageURL) {
-        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
+//        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
         Glide.with(getApplicationContext())
-                .load(fullEventImageUrl)
+                .load("http://www1.nyc.gov" + imageURL)
                 .centerCrop()
                 .into(scrollingImageView);
     }
@@ -186,6 +186,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.add_button_toolbar:
+                eventItem.setImageUrl("http://www1.nyc.gov" + eventItem.getImageUrl());
                 DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
                 addEventToDatabase(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
