@@ -71,6 +71,9 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
                 saveClicked = false;
                 greenSaveButton.setVisibility(View.INVISIBLE);
                 purpleSaveButton.setVisibility(View.VISIBLE);
+                Toast.makeText(itemView.getContext(), "Event Deleted", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).delete(DatabasePlace.class,"name = ?", museum.getName());
+
             }
         };
     }

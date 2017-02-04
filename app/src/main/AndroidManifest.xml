@@ -3,7 +3,7 @@
     package="nyc.c4q.jordansmith.nycevents">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".NYCEventsApplication"
@@ -26,7 +26,8 @@
             android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
 
         <activity android:name=".ParkEventInfoActivity" />
-        <activity android:name=".NYCEventsSplashScreen"></activity>
+        <activity android:name=".NYCEventsSplashScreen" />
+        <activity android:name=".SavedEventInfoActivity"></activity>
     </application>
 
 </manifest>
