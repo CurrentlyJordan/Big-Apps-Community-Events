@@ -1,5 +1,7 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,11 +52,18 @@ public class SavedPlaceAdapter extends RecyclerView.Adapter<SavedPlaceAdapter.Sa
         DatabasePlace savedPlace;
 
 
-        public SavedPlaceViewHolder(View itemView) {
+        public SavedPlaceViewHolder(final View itemView) {
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.saved_museum_name_tv);
             addressTextView = (TextView) itemView.findViewById(R.id.saved_museum_address_tv);
             phoneTextView = (TextView) itemView.findViewById(R.id.saved_museum_phone_tv);
+            phoneTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    itemView.getContext().startActivity( new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + savedPlace.getPhone())));
+
+                }
+            });
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
