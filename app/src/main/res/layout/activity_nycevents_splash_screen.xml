@@ -5,11 +5,13 @@
     android:id="@+id/activity_nycevents_splash_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fittedskyline"
     tools:context="nyc.c4q.jordansmith.nycevents.NYCEventsSplashScreen">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/fittedskyline"
         android:id="@+id/nyc_splash_background"/>
 
 
