@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 info_display.setText("Saved Places");
-                info_display.setBackgroundResource(R.drawable.places_image);
+                info_display.setBackgroundResource(R.drawable.museum_pic);
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.home_fragment_holder, new SavedPlacesChildFragment())
                         .commit();
