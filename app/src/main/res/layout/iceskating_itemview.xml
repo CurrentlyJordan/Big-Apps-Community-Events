@@ -18,7 +18,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/date_tv"
+            android:id="@+id/ice_type_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
@@ -26,21 +26,39 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/name_of_event_tv"
+            android:id="@+id/ice_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/event_imageview"
-            android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:padding="5dp" />
 
         <TextView
-            android:id="@+id/short_desc_tv"
+            android:id="@+id/ice_location_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ice_phone_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/blue"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ice_notes_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ice_rates_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -51,7 +69,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/evnts_purple_like"
+                android:id="@+id/ice_purple_like_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -60,7 +78,7 @@
                 android:src="@drawable/ic_purple_save" />
 
             <ImageView
-                android:id="@+id/evnts_green_like"
+                android:id="@+id/ice_green_like_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
