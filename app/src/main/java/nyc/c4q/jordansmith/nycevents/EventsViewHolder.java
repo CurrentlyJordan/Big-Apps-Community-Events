@@ -2,16 +2,20 @@ package nyc.c4q.jordansmith.nycevents;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 import nyc.c4q.jordansmith.nycevents.tabfragments.EventInfoActivity;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
  * Created by helenchan on 1/29/17.
@@ -23,15 +27,25 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
     ImageView eventImage;
     String imageURL;
     Items eventItems;
+    ImageView eventsLikeGreenButton;
+    ImageView eventsLikePurpleButton;
+    SQLiteDatabase db;
+
     public final static String EVENT_TAG = "SELECTED IMAGE";
 
     public EventsViewHolder(final View itemView) {
         super(itemView);
+        EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(itemView.getContext());
+        db = dbHelper.getWritableDatabase();
+
         final Context context = itemView.getContext();
         date_TV = (TextView)itemView.findViewById(R.id.date_tv);
         nameTV = (TextView)itemView.findViewById(R.id.name_of_event_tv);
         descriptionTV = (TextView) itemView.findViewById(R.id.short_desc_tv);
         eventImage = (ImageView)itemView.findViewById(R.id.event_imageview);
+        eventsLikeGreenButton = (ImageView) itemView.findViewById(R.id.evnts_green_like);
+        eventsLikePurpleButton = (ImageView) itemView.findViewById(R.id.evnts_purple_like);
+
 
 
 
@@ -42,6 +56,28 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
                 intent.putExtra(EVENT_TAG, eventItems);
                 context.startActivity(intent);
 
+            }
+        });
+
+        eventsLikePurpleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventsLikePurpleButton.setVisibility(View.INVISIBLE);
+                eventsLikeGreenButton.setVisibility(View.VISIBLE);
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItems);
+                Toast.makeText(itemView.getContext(), "Event Saved", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).put(databaseEvent);
+
+            }
+        });
+
+        eventsLikeGreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventsLikeGreenButton.setVisibility(View.INVISIBLE);
+                eventsLikePurpleButton.setVisibility(View.VISIBLE);
+                Toast.makeText(itemView.getContext(), "Event Deleted", Toast.LENGTH_SHORT).show();
+                cupboard().withDatabase(db).delete(DatabasePlace.class,"name = ?", eventItems.getName());
             }
         });
     }
