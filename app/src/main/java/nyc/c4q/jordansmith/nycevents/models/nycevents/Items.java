@@ -1,7 +1,9 @@
-package nyc.c4q.jordansmith.nycevents.models;
+package nyc.c4q.jordansmith.nycevents.models.nycevents;
 
 import java.io.Serializable;
 import java.util.List;
+
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Geometry;
 
 /**
  * Created by helenchan on 1/29/17.

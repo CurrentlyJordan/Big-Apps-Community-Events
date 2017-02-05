@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.qbusict.cupboard.QueryResultIterable;
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 

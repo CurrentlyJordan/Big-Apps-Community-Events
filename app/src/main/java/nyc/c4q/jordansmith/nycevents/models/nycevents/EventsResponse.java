@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.models;
+package nyc.c4q.jordansmith.nycevents.models.nycevents;
 
 import java.util.List;
 

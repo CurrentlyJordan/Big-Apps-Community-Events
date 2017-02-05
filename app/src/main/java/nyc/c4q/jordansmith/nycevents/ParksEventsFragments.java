@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 import nyc.c4q.jordansmith.nycevents.models.parkModel.Item;
 import nyc.c4q.jordansmith.nycevents.models.parkModel.Rss;
 import okhttp3.OkHttpClient;

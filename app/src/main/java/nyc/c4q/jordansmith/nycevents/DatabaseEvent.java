@@ -2,7 +2,7 @@ package nyc.c4q.jordansmith.nycevents;
 
 import java.io.Serializable;
 
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 /**
  * Created by jordansmith on 2/3/17.

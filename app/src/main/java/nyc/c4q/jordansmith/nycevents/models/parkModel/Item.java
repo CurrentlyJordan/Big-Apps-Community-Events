@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nyc.c4q.jordansmith.nycevents.EventInterface;
-import nyc.c4q.jordansmith.nycevents.models.Geometry;
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Geometry;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 /**
  * Created by jordansmith on 1/27/17.

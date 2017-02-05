@@ -27,7 +27,7 @@ import nyc.c4q.jordansmith.nycevents.DatabaseEvent;
 import nyc.c4q.jordansmith.nycevents.EventsDatabaseHelper;
 import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.jordansmith.nycevents.R.id.map;

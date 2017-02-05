@@ -13,8 +13,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.models.EventsResponse;
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.EventsResponse;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

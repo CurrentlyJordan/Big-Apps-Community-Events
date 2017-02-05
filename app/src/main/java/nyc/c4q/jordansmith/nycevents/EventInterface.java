@@ -1,6 +1,6 @@
 package nyc.c4q.jordansmith.nycevents;
 
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 /**
  * Created by jordansmith on 2/1/17.
