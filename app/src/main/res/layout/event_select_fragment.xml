@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="City Events"
+            android:textStyle="bold"
             android:textSize="16sp" />
 
 
@@ -60,13 +61,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:paddingTop="30dp"
-            android:src="@drawable/colorbench" />
+            android:src="@drawable/trees" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Park Events"
+            android:textStyle="bold"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -97,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Points of Interests"
+            android:textStyle="bold"
             android:textSize="16sp" />
 
     </LinearLayout>
