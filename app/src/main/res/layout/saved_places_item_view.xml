@@ -27,10 +27,12 @@
 
         <TextView
             android:id="@+id/saved_museum_address_tv"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:textSize="18sp" />
+            android:textStyle="bold"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/saved_museum_phone_tv"
