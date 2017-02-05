@@ -58,6 +58,10 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
                 purpleSaveButton.setVisibility(View.INVISIBLE);
                 greenSaveButton.setVisibility(View.VISIBLE);
                 DatabasePlace databasePlace = museum.transform();
+                databasePlace.setName(Html.fromHtml(databasePlace.getName()).toString());
+                databasePlace.setRates(Html.fromHtml(databasePlace.getRates()).toString());
+                databasePlace.setAddress(Html.fromHtml(databasePlace.getAddress()).toString());
+                databasePlace.setPhone(Html.fromHtml(databasePlace.getPhone()).toString());
                 Toast.makeText(itemView.getContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(databasePlace);
             }
