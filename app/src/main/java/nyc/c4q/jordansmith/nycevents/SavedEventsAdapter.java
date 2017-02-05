@@ -1,10 +1,14 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.CalendarContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -46,11 +50,13 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
         TextView dateTextView;
         TextView titleTextView;
         DatabaseEvent savedEvent;
+        ImageView calendarButton;
 
         public SavedEventsViewHolder(final View itemView) {
             super(itemView);
             dateTextView = (TextView) itemView.findViewById(R.id.saved_event_date_tv);
             titleTextView = (TextView) itemView.findViewById(R.id.saved_event_name_of_event_tv);
+            calendarButton = (ImageView) itemView.findViewById(R.id.calendar_events_purple_icon);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -67,6 +73,31 @@ public class SavedEventsAdapter extends RecyclerView.Adapter<SavedEventsAdapter.
                     Intent intent = new Intent(itemView.getContext(), SavedEventInfoActivity.class);
                     intent.putExtra("Saved Event", savedEvent);
                     itemView.getContext().startActivity(intent);
+                }
+            });
+
+            calendarButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(itemView.getContext())
+                            .setTitle("Add event to calendar")
+                            .setMessage("Do you want to add this event to your calendar?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
+                                    intent.putExtra(CalendarContract.Events.TITLE, savedEvent.getName());
+                                    intent.putExtra(CalendarContract.Events.DESCRIPTION, savedEvent.getShortDesc());
+
+                                    itemView.getContext().startActivity(intent);
+                                }
+
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
                 }
             });
         }
