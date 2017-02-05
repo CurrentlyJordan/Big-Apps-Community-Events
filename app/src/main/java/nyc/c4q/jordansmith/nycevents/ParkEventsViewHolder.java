@@ -67,9 +67,9 @@ public class ParkEventsViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 purpleLikeButton.setVisibility(View.INVISIBLE);
                 greenLikeButton.setVisibility(View.VISIBLE);
-//                DatabaseEvent databaseEvent = eventItems;
+                DatabaseEvent databaseEvent = new DatabaseEvent(eventItems);
                 Toast.makeText(itemView.getContext(), "Event Saved", Toast.LENGTH_SHORT).show();
-//                cupboard().withDatabase(db).put(eventItems);
+                cupboard().withDatabase(db).put(databaseEvent);
 
             }
         };
