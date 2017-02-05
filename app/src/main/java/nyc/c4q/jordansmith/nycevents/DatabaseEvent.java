@@ -1,12 +1,14 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import java.io.Serializable;
+
 import nyc.c4q.jordansmith.nycevents.models.Items;
 
 /**
  * Created by jordansmith on 2/3/17.
  */
 
-public class DatabaseEvent {
+public class DatabaseEvent implements Serializable {
 
     String name;
     String description;
