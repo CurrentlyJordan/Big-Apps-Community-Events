@@ -55,6 +55,8 @@
                 android:id="@+id/eatery_phone_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
                 android:padding="5dp"
                 android:textSize="15sp" />
 

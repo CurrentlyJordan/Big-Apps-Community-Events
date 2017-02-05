@@ -1,6 +1,8 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -30,9 +32,7 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
     SQLiteDatabase db;
 
 
-
-
-    public MuseumViewHolder(View itemView) {
+    public MuseumViewHolder(final View itemView) {
         super(itemView);
         EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(itemView.getContext());
         db = dbHelper.getWritableDatabase();
@@ -47,6 +47,13 @@ public class MuseumViewHolder extends RecyclerView.ViewHolder {
         purpleSaveButton.setOnClickListener(clickingPurpleFav());
         greenSaveButton = (ImageView) itemView.findViewById(R.id.museum_like_green_icon);
         greenSaveButton.setOnClickListener(clickGreenFav());
+        phoneTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemView.getContext().startActivity( new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + museum.getPhone())));
+
+            }
+        });
     }
 
     @NonNull
