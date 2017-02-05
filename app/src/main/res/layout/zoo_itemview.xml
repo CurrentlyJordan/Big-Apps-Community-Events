@@ -39,6 +39,8 @@
                 android:id="@+id/zoo_phone_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
                 android:clickable="true"
                 android:padding="5dp"
                 android:textSize="18sp" />

@@ -1,6 +1,8 @@
 package nyc.c4q.jordansmith.nycevents;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -33,10 +35,22 @@ public class ZooViewHolder extends RecyclerView.ViewHolder {
         zooNameTV = (TextView) itemView.findViewById(R.id.zoo_name_tv);
         zooAddyTV = (TextView) itemView.findViewById(R.id.zoo_address_tv);
         zooPhoneTV = (TextView) itemView.findViewById(R.id.zoo_phone_tv);
+        zooPhoneTV.setOnClickListener(clickPhone());
         zooPurpleLikeButton = (ImageView) itemView.findViewById(R.id.zoo_like_purple_icon);
         zooPurpleLikeButton.setOnClickListener(purpleLikeClick());
         zooGreenLikeButton = (ImageView) itemView.findViewById(R.id.zoo_like_green_icon);
         zooGreenLikeButton.setOnClickListener(greenLikeClick());
+    }
+
+    @NonNull
+    private View.OnClickListener clickPhone() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemView.getContext().startActivity( new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + facility.getPhone_Num())));
+
+            }
+        };
     }
 
 
