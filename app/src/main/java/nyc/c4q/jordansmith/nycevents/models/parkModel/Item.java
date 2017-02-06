@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.EventInterface;
+import nyc.c4q.jordansmith.nycevents.database.EventInterface;
 import nyc.c4q.jordansmith.nycevents.models.nycevents.Geometry;
 import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import nyc.c4q.jordansmith.nycevents.database.EventsDatabaseHelper;
 import nyc.c4q.jordansmith.nycevents.tabfragments.EventsFragment;
 import nyc.c4q.jordansmith.nycevents.tabfragments.HomeFragment;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 2;
-        private String tabTitles[] = new String[] { "Home", "Events"};
+        private String tabTitles[] = new String[] { "Home", "Explore"};
         List<Fragment> fragmentList;
 
         public MyPagerAdapter(FragmentManager fragmentManager, List<Fragment> fragmentList) {

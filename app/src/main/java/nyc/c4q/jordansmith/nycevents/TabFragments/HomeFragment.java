@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.SavedEventsChildFragment;
-import nyc.c4q.jordansmith.nycevents.SavedPlacesChildFragment;
+import nyc.c4q.jordansmith.nycevents.savedfavorites.SavedEventsChildFragment;
+import nyc.c4q.jordansmith.nycevents.savedfavorites.SavedPlacesChildFragment;
 
 /**
  * Created by jordansmith on 1/29/17.

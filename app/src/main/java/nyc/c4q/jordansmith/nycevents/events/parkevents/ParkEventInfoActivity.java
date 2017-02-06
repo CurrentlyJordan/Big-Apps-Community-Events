@@ -1,4 +1,4 @@
-package nyc.c4q.jordansmith.nycevents.tabfragments;
+package nyc.c4q.jordansmith.nycevents.events.parkevents;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,17 +23,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.konifar.fab_transformation.FabTransformation;
 
+import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.database.DatabaseEvent;
 import nyc.c4q.jordansmith.nycevents.database.EventsDatabaseHelper;
 import nyc.c4q.jordansmith.nycevents.events.nycevents.EventsViewHolder;
-import nyc.c4q.jordansmith.nycevents.R;
 import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
-import static nyc.c4q.jordansmith.nycevents.R.id.map;
+import static nyc.c4q.jordansmith.nycevents.R.id.park_map;
 
-
-public class EventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
+public class ParkEventInfoActivity extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
     TextView eventNameTextView;
     TextView eventInfoTextView;
@@ -51,50 +50,45 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     Items eventItem;
     SQLiteDatabase db;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_info);
+        setContentView(R.layout.activity_park_event_info);
         initialize();
         initializeButtons();
         SetEventInfo();
-//        mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//        .findFragmentById(map);
-//        mapFragment.getMapAsync(this);
         EventsDatabaseHelper dbHelper = EventsDatabaseHelper.getInstance(getApplicationContext());
         db = dbHelper.getWritableDatabase();
     }
 
+
     private void initialize() {
-        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar = (Toolbar) findViewById(R.id.park_main_toolbar);
         setSupportActionBar(toolbar);
-        fabToolbar = (Toolbar) findViewById(R.id.fab_toolbar);
-        eventFAB = (FloatingActionButton) findViewById(R.id.fab_event_info_button);
+        fabToolbar = (Toolbar) findViewById(R.id.park_fab_toolbar);
+        eventFAB = (FloatingActionButton) findViewById(R.id.park_fab_event_info_button);
         eventFAB.setOnClickListener(this);
-        eventNameTextView = (TextView) findViewById(R.id.event_name_textview);
-        eventInfoTextView = (TextView) findViewById(R.id.event_desc_textview);
-        eventTimeTextVIew = (TextView) findViewById(R.id.event_time_textview);
-        scrollingImageView = (ImageView) findViewById(R.id.main_backdrop);
-        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.map_holder);
+        eventNameTextView = (TextView) findViewById(R.id.park_event_name_textview);
+        eventInfoTextView = (TextView) findViewById(R.id.park_event_desc_textview);
+        eventTimeTextVIew = (TextView) findViewById(R.id.park_event_time_textview);
+        scrollingImageView = (ImageView) findViewById(R.id.park_main_backdrop);
+        mapHolderLinearLayout = (LinearLayout) findViewById(R.id.park_map_holder);
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
+                .findFragmentById(park_map);
         mapFragment.getMapAsync(this);
     }
 
     private void initializeButtons() {
-        ImageView closeButton = (ImageView) findViewById(R.id.close_toolbar);
+        ImageView closeButton = (ImageView) findViewById(R.id.park_close_toolbar);
         closeButton.setOnClickListener(this);
-        ImageView chromeButton = (ImageView) findViewById(R.id.chrome_button_toolbar);
+        ImageView chromeButton = (ImageView) findViewById(R.id.park_chrome_button_toolbar);
         chromeButton.setOnClickListener(this);
-        ImageView shareButton = (ImageView) findViewById(R.id.share_button_toolbar);
+        ImageView shareButton = (ImageView) findViewById(R.id.park_share_button_toolbar);
         shareButton.setOnClickListener(this);
-        ImageView saveButton = (ImageView) findViewById(R.id.add_button_toolbar);
+        ImageView saveButton = (ImageView) findViewById(R.id.park_add_button_toolbar);
         saveButton.setOnClickListener(this);
         SetEventInfo();
-
     }
-
 
     private void SetEventInfo() {
         Intent intent = getIntent();
@@ -103,24 +97,15 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         eventInfoTextView.setText(Html.fromHtml(eventItem.getDesc()).toString());
         eventTimeTextVIew.setText(eventItem.getDatePart() + " (" + eventItem.getTimePart() + ")");
         eventTitle = eventItem.getName();
-        eventUrl = eventItem.getWebsite();
-        if (eventUrl == null) {
-            eventUrl = eventItem.getPermalink();
-        }
-        setImage();
-        setGeometry();
-
-    }
-
-    public void setImage() {
         if (eventItem.getImageUrl() == null) {
             scrollingImageView.setImageResource(R.drawable.default_event_image);
-        } else {
-            setEventImageURL(eventItem.getImageUrl());
         }
-    }
-
-    public void setGeometry() {
+        else {
+            Glide.with(getApplicationContext())
+                    .load(eventItem.getImageUrl())
+                    .centerCrop()
+                    .into(scrollingImageView);
+        }
         if (eventItem.getGeometry() != null) {
             double eventLat = convertCoordinates(eventItem.getGeometry().get(0).getLat());
             double eventLong = convertCoordinates(eventItem.getGeometry().get(0).getLng());
@@ -128,49 +113,25 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         } else {
             mapHolderLinearLayout.setVisibility(View.GONE);
         }
-    }
-
-    public void setEventImageURL(String imageURL) {
-//        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
-        Glide.with(getApplicationContext())
-                .load("http://www1.nyc.gov" + imageURL)
-                .centerCrop()
-                .into(scrollingImageView);
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        if (eventLocation != null) {
-            mMap.addMarker(new MarkerOptions().position(eventLocation).title(eventTitle));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
+        eventUrl = eventItem.getWebsite();
 
         }
-
-    }
-
-
-    private double convertCoordinates(String coordinate) {
-
-        return Double.parseDouble(coordinate);
-    }
 
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fab_event_info_button:
+            case R.id.park_fab_event_info_button:
                 FabTransformation.with(eventFAB)
                         .transformTo(fabToolbar);
                 break;
-            case R.id.close_toolbar:
+            case R.id.park_close_toolbar:
                 FabTransformation.with(eventFAB)
                         .duration(200)
                         .transformFrom(fabToolbar);
                 break;
 
-            case R.id.chrome_button_toolbar:
+            case R.id.park_chrome_button_toolbar:
                 Uri uri = Uri.parse(eventUrl);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
@@ -178,15 +139,13 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                         .transformFrom(fabToolbar);
                 break;
 
-            case R.id.share_button_toolbar:
+            case R.id.park_share_button_toolbar:
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.putExtra(Intent.EXTRA_TEXT, eventUrl);
                 startActivity(Intent.createChooser(shareIntent, "Share via"));
                 break;
-
-            case R.id.add_button_toolbar:
-                eventItem.setImageUrl("http://www1.nyc.gov" + eventItem.getImageUrl());
+            case R.id.park_add_button_toolbar:
                 DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
                 addEventToDatabase(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();
@@ -198,12 +157,22 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        if (eventLocation != null) {
+            mMap.addMarker(new MarkerOptions().position(eventLocation).title(eventTitle));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 15));
+
+        }
+    }
+
+    private double convertCoordinates(String coordinate) {
+        return Double.parseDouble(coordinate);
+    }
+
     private void addEventToDatabase(DatabaseEvent databaseEvent) {
         cupboard().withDatabase(db).put(databaseEvent);
     }
-
 }
-
-
-
-
