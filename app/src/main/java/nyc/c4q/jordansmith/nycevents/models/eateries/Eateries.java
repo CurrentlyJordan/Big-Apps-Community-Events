@@ -11,8 +11,8 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
-import nyc.c4q.jordansmith.nycevents.DatabasePlace;
-import nyc.c4q.jordansmith.nycevents.PlaceInterface;
+import nyc.c4q.jordansmith.nycevents.database.DatabasePlace;
+import nyc.c4q.jordansmith.nycevents.database.PlaceInterface;
 
 @Root(name = "eateries")
 public class Eateries {

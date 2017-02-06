@@ -4,8 +4,8 @@ import org.simpleframework.xml.Element;
 
 import java.io.Serializable;
 
-import nyc.c4q.jordansmith.nycevents.DatabasePlace;
-import nyc.c4q.jordansmith.nycevents.PlaceInterface;
+import nyc.c4q.jordansmith.nycevents.database.DatabasePlace;
+import nyc.c4q.jordansmith.nycevents.database.PlaceInterface;
 
 /**
  * Created by helenchan on 2/1/17.

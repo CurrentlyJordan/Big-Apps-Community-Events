@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import nyc.c4q.jordansmith.nycevents.NYCEventsFragments;
-import nyc.c4q.jordansmith.nycevents.ParksEventsFragments;
+import nyc.c4q.jordansmith.nycevents.events.nycevents.NYCEventsFragments;
+import nyc.c4q.jordansmith.nycevents.events.parkevents.ParksEventsFragments;
 import nyc.c4q.jordansmith.nycevents.R;
 
 /**

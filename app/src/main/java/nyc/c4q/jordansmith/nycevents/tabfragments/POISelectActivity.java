@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import nyc.c4q.jordansmith.nycevents.EateriesFragment;
-import nyc.c4q.jordansmith.nycevents.IceskatingFragment;
-import nyc.c4q.jordansmith.nycevents.MuseumFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.eatery.EateriesFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.iceskating.IceskatingFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.museum.MuseumFragment;
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.ZooAndAquariumFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.zoo.ZooAndAquariumFragment;
 
 /**
  * Created by helenchan on 2/2/17.

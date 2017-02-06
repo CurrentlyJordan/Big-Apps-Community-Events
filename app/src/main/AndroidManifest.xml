@@ -22,8 +22,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
 
-        <activity android:name=".SavedEventInfoActivity"/>
-        <activity android:name=".ParkEventInfoActivity" />
+        <activity android:name=".savedfavorites.SavedEventInfoActivity"/>
+        <activity android:name=".events.parkevents.ParkEventInfoActivity" />
         <activity android:name=".NYCEventsSplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
