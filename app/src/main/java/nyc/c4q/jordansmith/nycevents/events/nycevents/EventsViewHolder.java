@@ -68,6 +68,7 @@ public class EventsViewHolder extends RecyclerView.ViewHolder {
             public void onClick(View v) {
                 eventsLikePurpleButton.setVisibility(View.INVISIBLE);
                 eventsLikeGreenButton.setVisibility(View.VISIBLE);
+                eventItems.setImageUrl("http://www1.nyc.gov" + eventItems.getImageUrl());
                 DatabaseEvent databaseEvent = new DatabaseEvent(eventItems);
                 Toast.makeText(itemView.getContext(), "Event Saved", Toast.LENGTH_SHORT).show();
                 cupboard().withDatabase(db).put(databaseEvent);
