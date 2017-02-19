@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poi_button_layout_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/poi_museum_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/museum"
+            android:text="Museums"
+            android:background="@null"
+            android:clickable="true"
+            android:layout_weight="1" />
+
+
+        <Button
+            android:id="@+id/poi_zoo_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/fish"
+            android:text="Zoo / Aquariums"
+            android:background="@null"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/poi_iceskate_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/iceskates"
+            android:text="Ice Skating Rinks"
+            android:background="@null"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/poi_eatery_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/carty"
+            android:text="Food Carts"
+            android:background="@null"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/cone"
+            android:text="Coming Soon"
+            android:background="@null"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:drawableTop="@drawable/cone"
+            android:text="Coming Soon"
+            android:background="@null"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

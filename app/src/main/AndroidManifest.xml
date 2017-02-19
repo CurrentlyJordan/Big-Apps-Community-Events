@@ -3,22 +3,19 @@
     package="nyc.c4q.jordansmith.nycevents">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
 
     <application
         android:name=".NYCEventsApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher2"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name=".NYCEventsSplashScreen">
-        <!--<activity android:name=".MainActivity">-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".tabfragments.EventInfoActivity" />
 
@@ -26,8 +23,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ParkEventInfoActivity" >
+
+        <activity android:name=".savedfavorites.SavedEventInfoActivity"/>
+        <activity android:name=".events.parkevents.ParkEventInfoActivity" />
+        <activity android:name=".NYCEventsSplashScreen" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

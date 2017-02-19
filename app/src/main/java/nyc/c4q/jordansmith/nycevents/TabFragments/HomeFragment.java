@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.SavedEventsChildFragment;
-import nyc.c4q.jordansmith.nycevents.SavedPlacesChildFragment;
+import nyc.c4q.jordansmith.nycevents.savedfavorites.SavedEventsChildFragment;
+import nyc.c4q.jordansmith.nycevents.savedfavorites.SavedPlacesChildFragment;
 
 /**
  * Created by jordansmith on 1/29/17.
@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 info_display.setText("Saved Places");
-                info_display.setBackgroundResource(R.drawable.places_image);
+                info_display.setBackgroundResource(R.drawable.museum_pic);
                 getChildFragmentManager().beginTransaction()
                         .replace(R.id.home_fragment_holder, new SavedPlacesChildFragment())
                         .commit();

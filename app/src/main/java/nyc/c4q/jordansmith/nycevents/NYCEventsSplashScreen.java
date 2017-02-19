@@ -9,16 +9,20 @@ import android.widget.ImageView;
 
 public class NYCEventsSplashScreen extends AppCompatActivity {
 
-    ImageView imageView;
+
+    ImageView logoImageView2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nycevents_splash_screen);
 
-        imageView = (ImageView)findViewById(R.id.imageView_skyscrapper_background);
+
+        logoImageView2 = (ImageView)findViewById(R.id.imageView_logo_text);
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.explore_nyc_welcome);
-        imageView.setAnimation(animation);
+        logoImageView2.setAnimation(animation);
+
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

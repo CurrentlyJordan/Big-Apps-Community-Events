@@ -11,6 +11,9 @@ import org.simpleframework.xml.Root;
 
 import java.util.List;
 
+import nyc.c4q.jordansmith.nycevents.database.DatabasePlace;
+import nyc.c4q.jordansmith.nycevents.database.PlaceInterface;
+
 @Root(name = "eateries")
 public class Eateries {
 
@@ -24,7 +27,7 @@ public class Eateries {
 
 
 
-    public static class Facility {
+    public static class Facility implements PlaceInterface {
 
         @Element(name="name", required = false)
         String name;
@@ -105,6 +108,18 @@ public class Eateries {
 
         public String getType_name() { return this.type_name; }
         public void setType_name(String _value) { this.type_name = _value; }
+
+        @Override
+        public DatabasePlace transform() {
+            DatabasePlace databasePlace = new DatabasePlace("eateries");
+            databasePlace.setName(this.getName());
+            databasePlace.setAddress(this.getLocation());
+            databasePlace.setPhone(this.getPhone());
+            databasePlace.setDescription(this.getDescription());
+            databasePlace.setType(this.getType_name());
+            return databasePlace;
+
+        }
 
 
     }

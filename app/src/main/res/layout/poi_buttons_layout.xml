@@ -45,14 +45,14 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/poi_iceskate_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:drawableTop="@drawable/iceskates"
-            android:text="Add Event Here"
+            android:text="Ice Skating Rinks"
             android:background="@null"
-            android:layout_weight="1"
-            android:id="@+id/button2" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/poi_eatery_button"
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/fountain"
+            android:drawableTop="@drawable/cone"
             android:text="Coming Soon"
             android:background="@null"
             android:layout_weight="1" />
@@ -86,11 +86,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:drawableTop="@drawable/fountain"
+            android:drawableTop="@drawable/cone"
             android:text="Coming Soon"
             android:background="@null"
-            android:layout_weight="1"
-            android:id="@+id/button" />
+            android:layout_weight="1"/>
 
     </LinearLayout>
 

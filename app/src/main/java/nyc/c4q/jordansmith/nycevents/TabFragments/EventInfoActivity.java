@@ -23,11 +23,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.konifar.fab_transformation.FabTransformation;
 
-import nyc.c4q.jordansmith.nycevents.DatabaseEvent;
-import nyc.c4q.jordansmith.nycevents.EventsDatabaseHelper;
-import nyc.c4q.jordansmith.nycevents.EventsViewHolder;
+import nyc.c4q.jordansmith.nycevents.database.DatabaseEvent;
+import nyc.c4q.jordansmith.nycevents.database.EventsDatabaseHelper;
+import nyc.c4q.jordansmith.nycevents.events.nycevents.EventsViewHolder;
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.models.Items;
+import nyc.c4q.jordansmith.nycevents.models.nycevents.Items;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.jordansmith.nycevents.R.id.map;
@@ -131,9 +131,9 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void setEventImageURL(String imageURL) {
-        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
+//        String fullEventImageUrl = "http://www1.nyc.gov" + imageURL;
         Glide.with(getApplicationContext())
-                .load(fullEventImageUrl)
+                .load("http://www1.nyc.gov" + imageURL)
                 .centerCrop()
                 .into(scrollingImageView);
     }
@@ -186,6 +186,7 @@ public class EventInfoActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.add_button_toolbar:
+                eventItem.setImageUrl("http://www1.nyc.gov" + eventItem.getImageUrl());
                 DatabaseEvent databaseEvent = new DatabaseEvent(eventItem);
                 addEventToDatabase(databaseEvent);
                 Toast.makeText(getApplicationContext(), "Event Saved", Toast.LENGTH_SHORT).show();

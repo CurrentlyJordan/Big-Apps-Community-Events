@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import nyc.c4q.jordansmith.nycevents.EateriesFragment;
-import nyc.c4q.jordansmith.nycevents.MuseumFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.eatery.EateriesFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.iceskating.IceskatingFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.museum.MuseumFragment;
 import nyc.c4q.jordansmith.nycevents.R;
-import nyc.c4q.jordansmith.nycevents.ZooAndAquariumFragment;
+import nyc.c4q.jordansmith.nycevents.pointofinterests.zoo.ZooAndAquariumFragment;
 
 /**
  * Created by helenchan on 2/2/17.
@@ -21,6 +22,7 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
     private Button museumButton;
     private Button zooButton;
     private Button eateryButton;
+    private Button iceskatingButton;
 
 
     @Nullable
@@ -38,6 +40,8 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
         zooButton.setOnClickListener(this);
         eateryButton = (Button) itemView.findViewById(R.id.poi_eatery_button);
         eateryButton.setOnClickListener(this);
+        iceskatingButton = (Button) itemView.findViewById(R.id.poi_iceskate_button);
+        iceskatingButton.setOnClickListener(this);
 
     }
 
@@ -59,6 +63,12 @@ public class POISelectActivity extends Fragment implements View.OnClickListener{
             case R.id.poi_eatery_button:
                 getFragmentManager().beginTransaction()
                         .add(R.id.poi_button_layout_id, new EateriesFragment())
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.poi_iceskate_button:
+                getFragmentManager().beginTransaction()
+                        .add(R.id.poi_button_layout_id, new IceskatingFragment())
                         .addToBackStack(null)
                         .commit();
                 break;
