@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
+
     <application
         android:name=".NYCEventsApplication"
         android:allowBackup="true"
@@ -22,9 +23,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBs6oTYxcm412IN4JdrLT5O71AXISNpIkU" />
 
+
         <activity android:name=".savedfavorites.SavedEventInfoActivity"/>
         <activity android:name=".events.parkevents.ParkEventInfoActivity" />
         <activity android:name=".NYCEventsSplashScreen" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
